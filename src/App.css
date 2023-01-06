@@ -1,0 +1,16 @@
+.banner-bg {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  min-height: 70vh;
+}
+.testimonial {
+  background: url("https://placeimg.com/800/200/arch") no-repeat center center;
+  background-size: cover;
+}
+.testimonial .overlay {
+  background: #0000009c;
+}
+.avatar {
+  display: inline-block !important;
+}
