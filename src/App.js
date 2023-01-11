@@ -1,17 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 
-// Import Slick Slider CSS files
-// import "~slick-carousel/slick/slick-theme.css";
-// import "~slick-carousel/slick/slick.css";
-
 import "./App.css";
 import About from "./Pages/About/About";
 import Blog from "./Pages/Blog";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import MyProfile from "./Pages/Dashboard/MyProfile/MyProfile";
 import Users from "./Pages/Dashboard/Users";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Login/Register";
+import RequireAuth from "./Pages/Login/RequireAuth";
 import Notfound from "./Pages/Notfound";
 import Portfolio from "./Pages/Portfolio/Portfolio";
 import Footer from "./Pages/Shared/Footer";
@@ -28,9 +26,32 @@ function App() {
 
         <Route path="my-portfolio" element={<Portfolio></Portfolio>}></Route>
 
-        <Route path="dashboard" element={<Dashboard></Dashboard>}>
-          <Route path="users" element={<Users></Users>}></Route>
-        </Route>
+        <Route
+          path="dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard></Dashboard>
+            </RequireAuth>
+          }
+        ></Route>
+
+        <Route
+          path="users"
+          element={
+            <RequireAuth>
+              <Users></Users>
+            </RequireAuth>
+          }
+        ></Route>
+
+        <Route
+          path="my-profile"
+          element={
+            <RequireAuth>
+              <MyProfile></MyProfile>
+            </RequireAuth>
+          }
+        ></Route>
 
         <Route path="home" element={<Home></Home>}></Route>
         <Route path="blog" element={<Blog></Blog>}></Route>

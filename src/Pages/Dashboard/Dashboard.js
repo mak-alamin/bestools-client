@@ -1,15 +1,19 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import auth from "../../firebase.init";
-import useAdmin from "../../hooks/useAdmin";
+import useUserRole from "../../hooks/useUserRole";
+import LeftMenu from "./LeftMenu";
 
 const Dashboard = () => {
-  const [user] = useAuthState(auth);
-  const [admin] = useAdmin(user);
+  const [user, loading] = useAuthState(auth);
 
-  console.log(admin);
-  
+  const [userRole] = useUserRole(user);
+
+  if (loading) {
+    return <progress className="progress w-56"></progress>;
+  }
+
   return (
     <div className="container pt-16">
       <div className="drawer drawer-mobile">
@@ -24,36 +28,8 @@ const Dashboard = () => {
           </h2>
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side">
-          <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
-          <ul className="menu p-4 overflow-y-auto w-48 text-base-content bg-slate-100">
-            <li>
-              <Link to="/dashboard">My Orders</Link>
-            </li>
-            <li>
-              <Link to="/dashboard/products">Products</Link>
-            </li>
-            <li>
-              <Link to="/dashboard/review">My Reviews</Link>
-            </li>
-            <li>
-              <Link to="/dashboard/profile">My Profile</Link>
-            </li>
-            {admin && (
-              <>
-                <li>
-                  <Link to="/dashboard/users">All Users</Link>
-                </li>
-                <li>
-                  <Link to="/dashboard/addUser">Add a User</Link>
-                </li>
-                <li>
-                  <Link to="/dashboard/manageUsers">Manage User</Link>
-                </li>
-              </>
-            )}
-          </ul>
-        </div>
+
+        <LeftMenu></LeftMenu>
       </div>
     </div>
   );
