@@ -4,8 +4,9 @@ import "./App.css";
 import About from "./Pages/About/About";
 import Blog from "./Pages/Blog";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import MyOrders from "./Pages/Dashboard/MyOrders/MyOrders";
 import MyProfile from "./Pages/Dashboard/MyProfile/MyProfile";
-import Users from "./Pages/Dashboard/Users";
+import Users from "./Pages/Dashboard/Users/Users";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Login/Register";
@@ -49,6 +50,15 @@ function App() {
           element={
             <RequireAuth>
               <MyProfile></MyProfile>
+            </RequireAuth>
+          }
+        ></Route>
+
+        <Route
+          path="my-orders"
+          element={
+            <RequireAuth>
+              <MyOrders></MyOrders>
             </RequireAuth>
           }
         ></Route>

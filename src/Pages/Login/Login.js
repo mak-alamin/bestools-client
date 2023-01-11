@@ -20,6 +20,7 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
+
   const [token] = useToken(user || gUser);
 
   let signInError;
@@ -27,8 +28,11 @@ const Login = () => {
   const location = useLocation();
   let from = location.state?.from?.pathname || "/dashboard";
 
+  console.log(token);
+
   useEffect(() => {
     if (token) {
+      console.log(from);
       navigate(from, { replace: true });
     }
   }, [token, from, navigate]);
