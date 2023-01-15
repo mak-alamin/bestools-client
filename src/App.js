@@ -6,6 +6,7 @@ import Blog from "./Pages/Blog";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyOrders from "./Pages/Dashboard/MyOrders/MyOrders";
 import MyProfile from "./Pages/Dashboard/MyProfile/MyProfile";
+import MyReviews from "./Pages/Dashboard/MyReviews/MyReviews";
 import Users from "./Pages/Dashboard/Users/Users";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
@@ -59,6 +60,15 @@ function App() {
           element={
             <RequireAuth>
               <MyOrders></MyOrders>
+            </RequireAuth>
+          }
+        ></Route>
+
+        <Route
+          path="my-reviews"
+          element={
+            <RequireAuth>
+              <MyReviews></MyReviews>
             </RequireAuth>
           }
         ></Route>

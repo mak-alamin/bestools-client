@@ -2,6 +2,7 @@ import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import auth from "../../firebase.init";
 
 const Header = () => {
@@ -49,6 +50,9 @@ const Header = () => {
   );
 
   return (
+    <>
+       <ToastContainer></ToastContainer>
+   
     <div className="navbar bg-base-100 z-50">
       <div className="navbar-start">
         <div className="dropdown">
@@ -105,6 +109,7 @@ const Header = () => {
         </label>
       </div>
     </div>
+    </>
   );
 };
 

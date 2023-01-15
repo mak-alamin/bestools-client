@@ -34,14 +34,14 @@ const UserRow = ({ user, refetch }) => {
           <p>
             {" "}
             Normal User{" "}
-            <button onClick={makeAdmin} class="btn btn-xs">
+            <button onClick={makeAdmin} className="btn btn-xs">
               Make Admin
             </button>
           </p>
         )}
       </td>
       <td>
-        <button class="btn btn-xs bg-red-500">Delete</button>
+        <button className="btn btn-xs bg-red-500">Delete</button>
       </td>
     </tr>
   );

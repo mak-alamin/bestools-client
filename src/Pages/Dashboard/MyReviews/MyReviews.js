@@ -1,9 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import LeftMenu from "../LeftMenu";
-import UpdateProfile from "./UpdateProfile";
 
-const MyProfile = () => {
+const MyReviews = () => {
   return (
     <div className="container pt-16">
       <div className="drawer drawer-mobile">
@@ -13,9 +12,7 @@ const MyProfile = () => {
           className="drawer-toggle"
         />
         <div className="drawer-content p-5">
-          <h2 className="text-2xl font-bold text-purple-500">My Profile</h2>
-
-          <UpdateProfile></UpdateProfile>
+          <h2 className="text-2xl font-bold text-purple-500">Add Review</h2>
           <Outlet></Outlet>
         </div>
 
@@ -25,4 +22,4 @@ const MyProfile = () => {
   );
 };
 
-export default MyProfile;
+export default MyReviews;

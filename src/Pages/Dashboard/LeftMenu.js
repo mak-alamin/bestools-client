@@ -26,7 +26,7 @@ const LeftMenu = () => {
         </li>
 
         <li>
-          <Link to="/add-review">Add Review</Link>
+          <Link to="/my-reviews">Add Review</Link>
         </li>
 
         {userRole === "admin" && (
