@@ -11,7 +11,7 @@ const RequireAuth = ({ children }) => {
     return <progress className="progress w-56"></progress>;
   }
 
-  console.log(user);
+  // console.log(user);
 
   if (user) {
     return children;

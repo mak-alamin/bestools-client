@@ -18,7 +18,7 @@ const Users = () => {
       },
     }).then((res) => res.json())
   );
-  
+
   if (isLoading) {
     return <Loading></Loading>;
   }
@@ -32,8 +32,8 @@ const Users = () => {
         />
         <div className="drawer-content p-5">
           <h2 className="text-2xl">All Users: {users?.length}</h2>
-          <div class="overflow-x-auto">
-            <table class="table w-full">
+          <div className="overflow-x-auto">
+            <table className="table w-full">
               <thead>
                 <tr>
                   <th>Name</th>

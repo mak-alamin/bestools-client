@@ -4,10 +4,13 @@ const useToken = (user) => {
   const [token, setToken] = useState("");
   useEffect(() => {
     const email = user?.user?.email;
-    const currentUser = { email: email };
+    const displayName = user?.user?.displayName;
+
+    const currentUser = { name: displayName, email: email };
+
     if (email) {
       fetch(`http://localhost:5000/user/${email}`, {
-        method: "PUT",
+        method: "POST",
         headers: {
           "content-type": "application/json",
         },

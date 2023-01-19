@@ -12,11 +12,13 @@ import Loading from "../Shared/Loading";
 
 const Register = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
@@ -47,10 +49,12 @@ const Register = () => {
   }
 
   const onSubmit = async (data) => {
-    await createUserWithEmailAndPassword(data.email, data.password);
+  let result = await createUserWithEmailAndPassword(data.email, data.password);
+
+  console.log(result);
     await updateProfile({ displayName: data.name });
-    console.log("updated profile");
   };
+
   return (
     <div className="flex h-screen justify-center items-center">
       <div className="card w-96 bg-base-100 shadow-xl">
@@ -157,6 +161,12 @@ const Register = () => {
             onClick={() => signInWithGoogle()}
             className="btn btn-outline"
           >
+            <img
+              src="/images/google.png"
+              alt="google"
+              width="18"
+              className="mr-2"
+            />{" "}
             Continue with Google
           </button>
         </div>
