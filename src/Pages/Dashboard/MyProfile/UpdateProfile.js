@@ -36,7 +36,7 @@ const UpdateProfile = () => {
 
   // Update Profile on Submit
   const handleUpdateProfile = (data) => {
-    // console.log(data);
+    console.log(data);
 
     fetch(`http://localhost:5000/user/${email}`, {
       method: "PUT",
@@ -51,7 +51,7 @@ const UpdateProfile = () => {
           setAlertInfo({
             show: true,
             type: "success",
-            message: "User Update Successfully.",
+            message: "User Updated Successfully.",
           });
         }
       });
@@ -63,7 +63,10 @@ const UpdateProfile = () => {
 
   return (
     <div>
-      <BesToolsAlert info={alertInfo}></BesToolsAlert>
+      <BesToolsAlert
+        info={alertInfo}
+        setAlertInfo={setAlertInfo}
+      ></BesToolsAlert>
 
       <form onSubmit={handleSubmit(handleUpdateProfile)}>
         <div className="form-control w-full max-w-xs">
@@ -74,7 +77,7 @@ const UpdateProfile = () => {
           <input
             type="text"
             defaultValue={userData?.name}
-            {...register("name", { required: "Name is required" })}
+            {...register("name")}
             className="input input-bordered w-full max-w-xs"
           />{" "}
           {errors.name && <p className="text-red-500">{errors.name.message}</p>}
@@ -98,6 +101,70 @@ const UpdateProfile = () => {
             disabled
             readOnly
           />
+        </div>
+
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            {" "}
+            <span className="label-text">Phone</span>
+          </label>
+          <input
+            type="text"
+            defaultValue={userData?.phone}
+            {...register("phone")}
+            className="input input-bordered w-full max-w-xs"
+          />{" "}
+          {errors?.phone && (
+            <p className="text-red-500">{errors.phone.message}</p>
+          )}
+        </div>
+
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            {" "}
+            <span className="label-text">Address</span>
+          </label>
+          <input
+            type="text"
+            defaultValue={userData?.address}
+            {...register("address")}
+            className="input input-bordered w-full max-w-xs"
+          />{" "}
+          {errors?.address && (
+            <p className="text-red-500">{errors.address.message}</p>
+          )}
+        </div>
+
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            {" "}
+            <span className="label-text">Education</span>
+          </label>
+          <input
+            type="text"
+            defaultValue={userData?.education}
+            {...register("education")}
+            className="input input-bordered w-full max-w-xs"
+          />{" "}
+          {errors?.education && (
+            <p className="text-red-500">{errors.education.message}</p>
+          )}
+        </div>
+
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            {" "}
+            <span className="label-text">Linkedin</span>
+          </label>
+          <input
+            type="text"
+            defaultValue={userData?.linkedin}
+            {...register("linkedin")}
+            className="input input-bordered w-full max-w-xs"
+          />{" "}
+          {errors?.linkedin && (
+            <p className="text-red-500">{errors.linkedin.message}</p>
+          )}
         </div>
         <input
           className="btn btn-accent w-full mt-4 max-w-xs"
