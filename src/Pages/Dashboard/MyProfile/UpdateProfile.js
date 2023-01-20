@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
@@ -8,16 +8,25 @@ import BesToolsAlert from "../../Shared/BesToolsAlert";
 const UpdateProfile = () => {
   const [user, loading] = useAuthState(auth);
 
+  const [userData, setUserData] = useState({});
+
+  const [alertInfo, setAlertInfo] = useState({});
+
   const email = user?.email;
 
-  const { data, isLoading, refetch } = useQuery("users", () =>
+  // Get User Data From DataBase
+  const { data, isLoading, refetch } = useQuery("users", () => {
     fetch(`http://localhost:5000/user/${email}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
-    }).then((res) => res.json())
-  );
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUserData(data);
+      });
+  });
 
   const {
     register,
@@ -25,8 +34,9 @@ const UpdateProfile = () => {
     formState: { errors },
   } = useForm();
 
+  // Update Profile on Submit
   const handleUpdateProfile = (data) => {
-    console.log(data);
+    // console.log(data);
 
     fetch(`http://localhost:5000/user/${email}`, {
       method: "PUT",
@@ -36,15 +46,24 @@ const UpdateProfile = () => {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((result) => {
-        if (result.acknowledged) {
+      .then((res) => {
+        if (res.result.acknowledged) {
+          setAlertInfo({
+            show: true,
+            type: "success",
+            message: "User Update Successfully.",
+          });
         }
       });
   };
 
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div>
-      <BesToolsAlert></BesToolsAlert>
+      <BesToolsAlert info={alertInfo}></BesToolsAlert>
 
       <form onSubmit={handleSubmit(handleUpdateProfile)}>
         <div className="form-control w-full max-w-xs">
@@ -54,7 +73,7 @@ const UpdateProfile = () => {
           </label>
           <input
             type="text"
-            defaultValue={data?.name}
+            defaultValue={userData?.name}
             {...register("name", { required: "Name is required" })}
             className="input input-bordered w-full max-w-xs"
           />{" "}
@@ -67,9 +86,14 @@ const UpdateProfile = () => {
             <span className="label-text">Email</span>
           </label>
           <input
-            type="text"
-            defaultValue={data?.email}
+            type="hidden"
+            defaultValue={email}
             {...register("email")}
+            className="input input-bordered w-full max-w-xs"
+          />
+          <input
+            type="text"
+            defaultValue={email}
             className="input input-bordered w-full max-w-xs"
             disabled
             readOnly
