@@ -10,12 +10,14 @@ const Dashboard = () => {
 
   const [userRole] = useUserRole(user);
 
+  console.log(userRole);
+
   if (loading) {
     return <progress className="progress w-56"></progress>;
   }
 
   return (
-    <div className="container pt-16">
+    <div className="container pt-10">
       <div className="drawer drawer-mobile">
         <input
           id="dashboard-sidebar"
@@ -23,9 +25,10 @@ const Dashboard = () => {
           className="drawer-toggle"
         />
         <div className="drawer-content p-5">
-          <h2 className="text-2xl font-bold text-purple-500">
-            Welcome to Dashboard
+          <h2 className="text-2xl font-bold text-purple-500 pb-2">
+            Your Dashboard
           </h2>
+          <hr />
           <Outlet></Outlet>
         </div>
 

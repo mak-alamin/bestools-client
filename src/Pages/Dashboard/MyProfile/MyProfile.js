@@ -1,11 +1,9 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import LeftMenu from "../LeftMenu";
 import UpdateProfile from "./UpdateProfile";
 
 const MyProfile = () => {
   return (
-    <div className="container pt-16">
+    <div className="container pt-1">
       <div className="drawer drawer-mobile">
         <input
           id="dashboard-sidebar"
@@ -16,10 +14,7 @@ const MyProfile = () => {
           <h2 className="text-2xl font-bold text-purple-500">My Profile</h2>
 
           <UpdateProfile></UpdateProfile>
-          <Outlet></Outlet>
         </div>
-
-        <LeftMenu></LeftMenu>
       </div>
     </div>
   );

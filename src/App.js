@@ -35,43 +35,19 @@ function App() {
               <Dashboard></Dashboard>
             </RequireAuth>
           }
-        ></Route>
+        >
+          <Route path="users" element={<Users></Users>}></Route>
 
-        <Route
-          path="users"
-          element={
-            <RequireAuth>
-              <Users></Users>
-            </RequireAuth>
-          }
-        ></Route>
+          <Route
+            index
+            path="my-profile"
+            element={<MyProfile></MyProfile>}
+          ></Route>
 
-        <Route
-          path="my-profile"
-          element={
-            <RequireAuth>
-              <MyProfile></MyProfile>
-            </RequireAuth>
-          }
-        ></Route>
+          <Route path="my-orders" element={<MyOrders></MyOrders>}></Route>
 
-        <Route
-          path="my-orders"
-          element={
-            <RequireAuth>
-              <MyOrders></MyOrders>
-            </RequireAuth>
-          }
-        ></Route>
-
-        <Route
-          path="my-reviews"
-          element={
-            <RequireAuth>
-              <MyReviews></MyReviews>
-            </RequireAuth>
-          }
-        ></Route>
+          <Route path="my-reviews" element={<MyReviews></MyReviews>}></Route>
+        </Route>
 
         <Route path="home" element={<Home></Home>}></Route>
         <Route path="blog" element={<Blog></Blog>}></Route>

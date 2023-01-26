@@ -23,7 +23,7 @@ const Users = () => {
     return <Loading></Loading>;
   }
   return (
-    <div className="container pt-16">
+    <div className="container pt-1">
       <div className="drawer drawer-mobile">
         <input
           id="dashboard-sidebar"
@@ -55,8 +55,6 @@ const Users = () => {
           </div>
           <Outlet></Outlet>
         </div>
-
-        <LeftMenu></LeftMenu>
       </div>
     </div>
   );

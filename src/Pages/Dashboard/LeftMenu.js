@@ -18,27 +18,27 @@ const LeftMenu = () => {
         </li>
 
         <li>
-          <Link to="/my-orders">My Orders</Link>
+          <Link to="/dashboard/my-orders">My Orders</Link>
         </li>
 
         <li>
-          <Link to="/my-profile">My Profile</Link>
+          <Link to="/dashboard/my-profile">My Profile</Link>
         </li>
 
         <li>
-          <Link to="/my-reviews">Add Review</Link>
+          <Link to="/dashboard/my-reviews">Add Review</Link>
         </li>
 
         {userRole === "admin" && (
           <>
             <li>
-              <Link to="/manage-products">Manage Products</Link>
+              <Link to="/dashboard/manage-products">Manage Products</Link>
             </li>
             <li>
-              <Link to="/manage-orders">Manage Orders</Link>
+              <Link to="/dashboard/manage-orders">Manage Orders</Link>
             </li>
             <li>
-              <Link to="/users">All Users</Link>
+              <Link to="/dashboard/users">All Users</Link>
             </li>
           </>
         )}
