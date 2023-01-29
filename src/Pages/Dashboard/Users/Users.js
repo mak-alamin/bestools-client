@@ -2,7 +2,6 @@ import React from "react";
 import { useQuery } from "react-query";
 import { Outlet } from "react-router-dom";
 import Loading from "../../Shared/Loading";
-import LeftMenu from "../LeftMenu";
 import UserRow from "./UserRow";
 
 const Users = () => {

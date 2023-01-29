@@ -32,7 +32,7 @@ const LeftMenu = () => {
         {userRole === "admin" && (
           <>
             <li>
-              <Link to="/dashboard/manage-products">Manage Products</Link>
+              <Link to="/dashboard/products">Manage Products</Link>
             </li>
             <li>
               <Link to="/dashboard/manage-orders">Manage Orders</Link>
