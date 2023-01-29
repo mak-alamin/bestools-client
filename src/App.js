@@ -1,4 +1,7 @@
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
+import 'react-toastify/dist/ReactToastify.css';
 
 import "./App.css";
 import About from "./Pages/About/About";
@@ -20,6 +23,8 @@ import Header from "./Pages/Shared/Header";
 function App() {
   return (
     <>
+      <ToastContainer></ToastContainer>
+
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>

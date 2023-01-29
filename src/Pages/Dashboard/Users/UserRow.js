@@ -4,7 +4,8 @@ import { toast } from "react-toastify";
 const UserRow = ({ user, refetch }) => {
   const { name, email, role } = user;
   const makeAdmin = () => {
-    fetch(`http://localhost:5000/user/admin/${email}`, {
+    try {
+      fetch(`http://localhost:5000/user/admin/${email}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -22,6 +23,10 @@ const UserRow = ({ user, refetch }) => {
           toast.success(`Successfully made an admin`);
         }
       });
+    } catch (error) {
+      console.log(error);
+      toast.error('Something went wrong! Please try again latter');
+    }
   };
   return (
     <tr>
