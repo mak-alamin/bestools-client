@@ -28,8 +28,6 @@ const Login = () => {
   const location = useLocation();
   let from = location.state?.from?.pathname || "/dashboard";
 
-  console.log(token);
-
   useEffect(() => {
     if (token) {
       navigate(from, { replace: true });
