@@ -4,9 +4,9 @@ import auth from '../firebase.init';
 
 const useUserData = (email) => {
     const [userData, setUserData] = useState("");
-  useEffect(() => {
+  useEffect( () => {
     if (email) {
-      fetch(`http://localhost:5000/user/${email}`, {
+       fetch(`http://localhost:8000/user/${email}`, {
         method: "GET",
         headers: {
           "content-type": "application/json",
@@ -15,6 +15,7 @@ const useUserData = (email) => {
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log(data);
           if(data.error){
             signOut(auth);
             localStorage.removeItem('accessToken');

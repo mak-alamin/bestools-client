@@ -1,9 +1,8 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-// import { useQuery } from "react-query";
 import auth from "../../../firebase.init";
-import useUserData from "../../../hooks/useUserData";
 import BesToolsAlert from "../../Shared/BesToolsAlert";
 import Loading from "../../Shared/Loading";
 
@@ -14,7 +13,23 @@ const UpdateProfile = () => {
 
   const email = user?.email;
 
-  const [userData] = useUserData(email);
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ['users'],
+    queryFn: async () => {
+        try {
+            const res = await fetch(`http://localhost:8000/user/${email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
+            const data = await res.json();
+            return data;
+        }
+        catch (error) {
+          console.log(error);
+        }
+    }
+});
 
   const {
     register,
@@ -24,7 +39,7 @@ const UpdateProfile = () => {
 
   // Update Profile on Submit
   const handleUpdateProfile = (data) => {
-    fetch(`http://localhost:5000/user/${email}`, {
+    fetch(`http://localhost:8000/user/${email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -43,7 +58,7 @@ const UpdateProfile = () => {
       });
   };
 
-  if ( loading ) {
+  if ( loading || isLoading ) {
     return <Loading></Loading>;
   }
 
@@ -62,7 +77,7 @@ const UpdateProfile = () => {
           </label>
           <input
             type="text"
-            defaultValue={userData?.name}
+            defaultValue={data?.name}
             {...register("name")}
             className="input input-bordered w-full max-w-xs"
           />{" "}
@@ -96,7 +111,7 @@ const UpdateProfile = () => {
           </label>
           <input
             type="text"
-            defaultValue={userData?.phone}
+            defaultValue={data?.phone}
             {...register("phone")}
             className="input input-bordered w-full max-w-xs"
           />{" "}
@@ -112,7 +127,7 @@ const UpdateProfile = () => {
           </label>
           <input
             type="text"
-            defaultValue={userData?.address}
+            defaultValue={data?.address}
             {...register("address")}
             className="input input-bordered w-full max-w-xs"
           />{" "}
@@ -128,7 +143,7 @@ const UpdateProfile = () => {
           </label>
           <input
             type="text"
-            defaultValue={userData?.education}
+            defaultValue={data?.education}
             {...register("education")}
             className="input input-bordered w-full max-w-xs"
           />{" "}
@@ -144,7 +159,7 @@ const UpdateProfile = () => {
           </label>
           <input
             type="text"
-            defaultValue={userData?.linkedin}
+            defaultValue={data?.linkedin}
             {...register("linkedin")}
             className="input input-bordered w-full max-w-xs"
           />{" "}
