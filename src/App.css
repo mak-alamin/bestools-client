@@ -14,3 +14,23 @@
 .container .drawer {
   height: auto;
 }
+.bestools-modal .modal-box {
+  max-width: 56%;
+}
+
+/* Bestools Drawer */
+.bestools-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  z-index: 99;
+  background: #f4f4f4fa;
+  padding: 20px;
+  border-left: 1px solid #d4d4d4;
+  transition: 0.5s all;
+  transform: translateX(100%);
+}
+.bestools-drawer.active {
+  transform: translateX(0px);
+}

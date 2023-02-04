@@ -1,17 +1,35 @@
-import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import React, { useContext } from "react";
+import { Outlet } from "react-router-dom";
+import { bestoolContext } from "../../../App";
+import Notfound from "../../Notfound";
+import AddProduct from "./AddProduct";
 
-const Products = () => {
+const Products = ({userRole}) => {
+  const {drawerContext} = useContext(bestoolContext);
+  const {setDrawerInfo} = useContext(bestoolContext);
+
+  const openDrawer = () => {
+    setDrawerInfo({
+      isOpen: true,
+      content: <AddProduct></AddProduct>,
+      width: 50
+    })
+  }
+  
+  if(userRole !== 'admin'){
+    return <Notfound></Notfound>
+  }
+
   return (
     <div className="container pt-1">
-      <div className="drawer drawer-mobile">
         <input
           id="dashboard-sidebar"
           type="checkbox"
           className="drawer-toggle"
         />
-        <div className="drawer-content p-5">
-          <h2 className="text-2xl font-bold text-purple-500 mb-3">Products <Link to='/dashboard/products/add-new' className="btn btn-sm bg-sky-500 border-0 rounded ml-3">Add New</Link> </h2>
+        <div className="p-5">
+          <h2 className="text-2xl font-bold text-purple-500 mb-3">Products  <span className="btn btn-sm bg-sky-500 border-0 rounded ml-3" onClick={openDrawer}>Add New</span> </h2>
+
           <div className="overflow-x-auto">
             <table className="table w-full">
               <thead>
@@ -28,7 +46,6 @@ const Products = () => {
           </div>
           <Outlet></Outlet>
         </div>
-      </div>
     </div>
   );
 };

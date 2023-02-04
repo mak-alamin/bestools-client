@@ -29,7 +29,7 @@ const UpdateProfile = () => {
           console.log(error);
         }
     }
-});
+  });
 
   const {
     register,

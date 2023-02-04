@@ -2,13 +2,10 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Outlet } from "react-router-dom";
 import auth from "../../firebase.init";
-import useUserRole from "../../hooks/useUserRole";
 import LeftMenu from "./LeftMenu";
 
 const Dashboard = () => {
   const [user, loading] = useAuthState(auth);
-
-  const [userRole] = useUserRole(user);
 
   console.log(user);
 

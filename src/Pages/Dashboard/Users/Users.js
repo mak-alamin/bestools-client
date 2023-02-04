@@ -1,22 +1,27 @@
+import { useQuery } from '@tanstack/react-query';
 import React from "react";
-import { useQuery } from "react-query";
 import { Outlet } from "react-router-dom";
 import Loading from "../../Shared/Loading";
 import UserRow from "./UserRow";
 
 const Users = () => {
-  const {
-    data: users,
-    isLoading,
-    refetch,
-  } = useQuery("users", () =>
-    fetch("http://localhost:8000/user", {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then((res) => res.json())
-  );
+  const { data: users, isLoading, refetch } = useQuery({
+    queryKey: ['users'],
+    queryFn: async () => {
+        try {
+            const res = await fetch("http://localhost:8000/user", {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
+            const data = await res.json();
+            return data;
+        }
+        catch (error) {
+          console.log(error);
+        }
+    }
+  });
 
   if (isLoading) {
     return <Loading></Loading>;
