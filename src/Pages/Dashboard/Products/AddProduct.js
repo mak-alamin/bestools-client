@@ -2,26 +2,65 @@ import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import auth from '../../../firebase.init';
+import BesToolsAlert from '../../Shared/BesToolsAlert';
+import Loading from '../../Shared/Loading';
 
 const AddProduct = () => {
     const [user, loading] = useAuthState(auth);
 
     const [alertInfo, setAlertInfo] = useState({});
+    const [productImg, setProductImg] = useState('');
+    const [submitLoader, setSubmitLoader] = useState(false);
 
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm();
 
     const handleAddProduct = (data) => {
-        console.log(data)
+        setSubmitLoader(true);
+
+       const slug = data.title.toLowerCase().replace(/ /g,"-");
+
+       const product = {...data, slug:slug}
+
+       console.log(product)
+
+       fetch(`http://localhost:8000/product`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization:   `bearer ${localStorage.getItem('accessToken')}`
+        },
+        body: JSON.stringify(product)
+      })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.acknowledged) {
+            setAlertInfo({
+              show: true,
+              type: "success",
+              message: "Product added successfully.",
+            });
+            reset();
+            setProductImg('');
+            setSubmitLoader(false);
+          }
+      })
     }
 
     return (
-        <div>
-            <h3 className="text-lg font-bold">Add Product</h3>
-            <form onSubmit={handleSubmit(handleAddProduct)}>
+        <>
+         <BesToolsAlert
+        info={alertInfo}
+        setAlertInfo={setAlertInfo}
+      ></BesToolsAlert>
+        
+        <div className='flex justify-between items-center gap-x-10'>
+            <form className='w-1/2' onSubmit={handleSubmit(handleAddProduct)}>
+                <h3 className="text-lg font-bold">Add Product</h3>
                 <div className="form-control w-full max-w-xs mb-3">
                     <label className="label" htmlFor='product_title'>
                         <span className="label-text">Product Title</span>
@@ -43,7 +82,7 @@ const AddProduct = () => {
                         type="text"
                         defaultValue=""
                         {...register("img_url")} id="product_img_url"
-                        className="input input-bordered w-full max-w-xs"
+                        className="input input-bordered w-full max-w-xs" onChange={(e) => setProductImg(e.target.value) }
                     />{" "}
                     {errors.name && <p className="text-red-500">{errors.name.message}</p>}
                 </div>
@@ -94,11 +133,17 @@ const AddProduct = () => {
                     {errors.min_order_qty && <p className="text-red-500">{errors.min_order_qty.message}</p>}
                 </div>
 
-                <input className="btn btn-accent mt-4 max-w-xs mr-4" value="Save" type="submit" /> 
-
-                <input className="btn btn-accent mt-4 max-w-xs" value="Save & Add More" type="submit" />
+                <div className="submit flex gap-x-5">
+                    <input className="btn btn-accent mt-4 max-w-xs mr-4" value="Add Product" type="submit" />
+                    {submitLoader && <Loading></Loading>}
+                </div>
             </form>
+
+            <div className='image w-1/2'>
+                { productImg &&  <img src={productImg} alt="top-view-different-types-wrenches-1"  border="0"></img> }
+            </div>
         </div>
+        </>
     );
 };
 
