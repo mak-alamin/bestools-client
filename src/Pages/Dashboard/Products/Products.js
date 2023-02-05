@@ -37,7 +37,9 @@ const Products = ({userRole}) => {
                   <th>Image</th>
                   <th>Title</th>
                   <th>Description</th>
-                  <th>Tags</th>
+                  <th>Price</th>
+                  <th>In Stock</th>
+                  <th>Minimum Order Quantity</th>
                   <th>Actions</th>
                 </tr>
               </thead>

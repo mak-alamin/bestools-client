@@ -14,6 +14,10 @@ const BTDrawer = () => {
     }
     
     return (
+      <>
+      
+      <div className={`drawer-overlay ${drawerContext?.isOpen ? "block" : "hidden"}`} onClick={closeDrawer}></div>
+      
       <div className={`bestools-drawer ${drawerContext?.isOpen ? "active" : ""}`} style={{width: `${drawerContext.width}%`}}>
          
          <label className="btn btn-sm btn-circle absolute right-2 top-2" onClick={closeDrawer}>✕</label>
@@ -22,6 +26,7 @@ const BTDrawer = () => {
           {drawerContext?.content}
         </div>
       </div>
+      </>
     )
 };
 

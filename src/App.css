@@ -34,3 +34,11 @@
 .bestools-drawer.active {
   transform: translateX(0px);
 }
+.drawer-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #4848485e;
+  z-index: 99;
+  display: none;
+}

@@ -16,12 +16,14 @@ function App() {
     width: 30
   });
 
+  let bestoolValues = {
+    drawerContext: drawerInfo,
+    setDrawerInfo: setDrawerInfo,
+  }
+
   return (
     <>
-     <bestoolContext.Provider value={{
-          drawerContext: drawerInfo,
-          setDrawerInfo: setDrawerInfo,
-        }}>
+     <bestoolContext.Provider value={bestoolValues}>
          
         <ToastContainer></ToastContainer>
         
