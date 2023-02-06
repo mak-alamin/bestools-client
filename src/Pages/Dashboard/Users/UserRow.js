@@ -28,6 +28,7 @@ const UserRow = ({ user, refetch }) => {
       toast.error('Something went wrong! Please try again latter');
     }
   };
+  
   return (
     <tr>
       <td>{name}</td>
