@@ -47,7 +47,7 @@ const UserRow = ({ user, refetch }) => {
         )}
       </td>
       <td>
-        <button className="btn btn-xs bg-red-500">Delete</button>
+        <button className="btn btn-xs btn-outline btn-error rounded">Delete</button>
       </td>
     </tr>
   );

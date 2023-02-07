@@ -13,7 +13,7 @@ const ProductRow = ({product, refetch}) => {
             <td>{min_order_qty}</td>
             <td>
             <button className="btn btn-xs bg-sky-500 border-0 rounded mr-3">Edit</button>
-            <button className="btn btn-xs bg-red-500 border-0 rounded">Delete</button>
+            <button className="btn btn-xs btn-outline btn-error rounded">Delete</button>
             </td>
         </tr>
     );

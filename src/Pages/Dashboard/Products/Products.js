@@ -17,10 +17,11 @@ const Products = ({userRole}) => {
             const res = await fetch("http://localhost:8000/product", {
               method: "GET",
             });
+
             const data = await res.json();
+            
             return data;
-        }
-        catch (error) {
+        } catch (error) {
           console.log(error);
         }
     }
