@@ -21,7 +21,7 @@ const RequireAuth = ({ children }) => {
   //   queryKey: ['users'],
   //   queryFn: async () => {
   //       try {
-  //           const res = await fetch(`http://localhost:8000/user/${email}`, {
+  //           const res = await fetch(`http://localhost:5000/user/${email}`, {
   //               headers: {
   //                   authorization: `bearer ${localStorage.getItem('accessToken')}`
   //               }

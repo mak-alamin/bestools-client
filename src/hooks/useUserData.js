@@ -6,7 +6,7 @@ const useUserData = (email) => {
     const [userData, setUserData] = useState("");
   useEffect( () => {
     if (email) {
-       fetch(`http://localhost:8000/user/${email}`, {
+       fetch(`http://localhost:5000/user/${email}`, {
         method: "GET",
         headers: {
           "content-type": "application/json",

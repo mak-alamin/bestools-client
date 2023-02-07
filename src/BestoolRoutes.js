@@ -1,7 +1,7 @@
 import React from 'react';
-import auth from "./firebase.init";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Route, Routes } from "react-router-dom";
+import auth from "./firebase.init";
 import useUserRole from "./hooks/useUserRole";
 import About from "./Pages/About/About";
 import Blog from "./Pages/Blog";
@@ -25,8 +25,7 @@ const BestoolRoutes = () => {
   const [userRole] = useUserRole(user);
 
     return (
-        <>
-            <Routes>
+        <Routes>
           <Route path="/" element={<Home></Home>}></Route>
 
           <Route path="about" element={<About></About>}></Route>
@@ -65,7 +64,6 @@ const BestoolRoutes = () => {
 
           <Route path="*" element={<Notfound></Notfound>}></Route>
         </Routes>
-        </>
     );
 };
 

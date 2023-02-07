@@ -8,7 +8,7 @@ const useAdmin = (user) => {
     const email = user?.email;
 
     if (email) {
-      fetch(`http://localhost:8000/admin/${email}`, {
+      fetch(`http://localhost:5000/admin/${email}`, {
         method: "GET",
         headers: {
           "content-type": "application/json",

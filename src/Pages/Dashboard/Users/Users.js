@@ -9,7 +9,7 @@ const Users = () => {
     queryKey: ['users'],
     queryFn: async () => {
         try {
-            const res = await fetch("http://localhost:8000/user", {
+            const res = await fetch("http://localhost:5000/user", {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -26,6 +26,7 @@ const Users = () => {
   if (isLoading) {
     return <Loading></Loading>;
   }
+
   return (
     <div className="container pt-1">
       <div className="drawer drawer-mobile">
@@ -47,7 +48,7 @@ const Users = () => {
                 </tr>
               </thead>
               <tbody>
-                {users.map((user) => (
+                {users.length && users.map((user) => (
                   <UserRow
                     key={user._id}
                     user={user}
