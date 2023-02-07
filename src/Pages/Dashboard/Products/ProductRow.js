@@ -1,6 +1,7 @@
 import React from 'react';
+import UpdateProduct from './UpdateProduct';
 
-const ProductRow = ({product, refetch, setDeletingProduct}) => {
+const ProductRow = ({product, refetch, setDeletingProduct, openDrawer}) => {
     const {title,img_url,price, description,stock_qty,min_order_qty, } = product;
 
     return (
@@ -12,7 +13,9 @@ const ProductRow = ({product, refetch, setDeletingProduct}) => {
             <td>{stock_qty}</td>
             <td>{min_order_qty}</td>
             <td>
-            <button className="btn btn-xs bg-sky-500 border-0 rounded mr-3">Edit</button>
+            
+            <button onClick={() => openDrawer(<UpdateProduct product={product} refetch={refetch} ></UpdateProduct>)} className="btn btn-xs bg-sky-500 border-0 rounded mr-3">Edit</button>
+
             <label onClick={() => setDeletingProduct(product)}  htmlFor="confirmation-modal" className="btn btn-xs btn-outline btn-error rounded">Delete</label>
             </td>
         </tr>

@@ -31,10 +31,10 @@ const Products = ({userRole}) => {
     }
   });
 
-  const openDrawer = () => {
+  const openDrawer = (component) => {
     setDrawerInfo({
       isOpen: true,
-      content: <AddProduct></AddProduct>,
+      content: component,
       width: 50
     })
   }
@@ -81,7 +81,11 @@ const Products = ({userRole}) => {
           className="drawer-toggle"
         />
         <div className="p-5">
-          <h2 className="text-2xl font-bold text-purple-500 mb-3">Products <span className="text-slate-600">({products.length})</span> <span className="btn btn-sm bg-sky-500 border-0 rounded ml-3" onClick={openDrawer}>Add New</span> </h2>
+          <h2 className="text-2xl font-bold text-purple-500 mb-3">
+            Products 
+            <span className="text-slate-600">({products.length})</span> 
+            <span className="btn btn-sm bg-sky-500 border-0 rounded ml-3" onClick={() => openDrawer(<AddProduct></AddProduct>)}>Add New</span>
+          </h2>
 
           <div className="overflow-x-auto">
             <table className="table w-full text-center table-zebra">
@@ -97,8 +101,8 @@ const Products = ({userRole}) => {
                 </tr>
               </thead>
               <tbody>
-                {products && products.map((product) =>
-                  <ProductRow key={product._id} product={product} refetch={refetch} setDeletingProduct={setDeletingProduct}></ProductRow>)}
+                {products.length && products.map((product) =>
+                  <ProductRow key={product._id} product={product} refetch={refetch} setDeletingProduct={setDeletingProduct} openDrawer={openDrawer} ></ProductRow>)}
               </tbody>
             </table>
           </div>

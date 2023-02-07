@@ -8,7 +8,7 @@ const BesToolsAlert = ({ info, setAlertInfo }) => {
 
   const { type, message, show } = info;
   return show ? (
-    <div className="my-2 bestools-alert">
+    <div className="my-2 w-full bestools-alert">
       <Alert color={type} onDismiss={onDismiss}>
         <span> {message} </span>
       </Alert>
