@@ -2,29 +2,24 @@ import { useEffect, useState } from "react";
 
 const useToken = (user) => {
   const [token, setToken] = useState("");
-  useEffect(() => {
-    const email = user?.user?.email;
-    const displayName = user?.user?.displayName;
+  const email = user?.user?.email;
 
-    const currentUser = { name: displayName, email: email };
-
+  useEffect(() => { 
     if (email) {
-      fetch(`http://localhost:5000/user/${email}`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(currentUser),
-      })
+      fetch(`http://localhost:5000/jwt?email=${email}`)
         .then((res) => res.json())
         .then((data) => {
+
           console.log(data);
-          const accessToken = data.token;
-          localStorage.setItem("accessToken", accessToken);
-          setToken(accessToken);
+
+          if (data?.accessToken) {
+            localStorage.setItem('accessToken', data.accessToken);
+            setToken(data.accessToken);
+          }
         });
     }
-  }, [user]);
+  }, [email]);
+
   return [token];
 };
 

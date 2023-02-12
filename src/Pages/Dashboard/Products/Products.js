@@ -1,14 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import { bestoolContext } from "../../../App";
+import useUserRole from "../../../hooks/useUserRole";
 import Notfound from "../../Notfound";
 import Loading from "../../Shared/Loading";
 import ConfirmModal from "./../../Shared/ConfirmModal";
 import AddProduct from "./AddProduct";
 import ProductRow from "./ProductRow";
+import auth from './../../../firebase.init';
 
-const Products = ({userRole}) => {
+const Products = () => {
+  const[user] = useAuthState(auth);
+  const [userRole] = useUserRole(user);
+  
   const {drawerContext} = useContext(bestoolContext);
   const {setDrawerInfo} = useContext(bestoolContext);
 
@@ -107,9 +113,6 @@ const Products = ({userRole}) => {
             </table>
           </div>
         </div>
-
-          {console.log(deletingProduct)}
-
           {deletingProduct && <ConfirmModal
                   title={`Are you sure you want to delete?`}
                   message={`If you delete "${deletingProduct?.title}" it cannot be undone.`}

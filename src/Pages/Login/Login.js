@@ -19,8 +19,7 @@ const Login = () => {
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-
-
+    
   const [token] = useToken(user || gUser);
 
   console.log(token);
@@ -32,8 +31,8 @@ const Login = () => {
 
   useEffect(() => {
     if (token) {
-      console.log(token);
-      navigate(from, { replace: true });
+      // console.log(token);
+      navigate(from, { replace: true, state:{token: token} });
     }
   }, [token, from, navigate]);
 

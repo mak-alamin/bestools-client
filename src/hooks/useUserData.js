@@ -1,31 +1,29 @@
-import { signOut } from 'firebase/auth';
-import { useEffect, useState } from 'react';
-import auth from '../firebase.init';
+import { useQuery } from '@tanstack/react-query';
 
-const useUserData = (email) => {
-    const [userData, setUserData] = useState("");
-  useEffect( () => {
-    if (email) {
-       fetch(`http://localhost:5000/user/${email}`, {
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          if(data.error){
-            signOut(auth);
-            localStorage.removeItem('accessToken');
-          } else {
-            setUserData(data);
-          }
-        });
+const useUserData = ({email, token}) => {
+
+  // console.log(email, token);
+  const { data: userData, isLoading, refetch } = useQuery({
+    queryKey: ['users', email],
+    queryFn: async () => {
+        try {
+            const res = await fetch(`http://localhost:5000/user/${email}`, {
+              method: "GET",
+              headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${token}`,
+              },
+            });
+
+            const data = await res.json();
+            
+            return data;
+        } catch (error) {
+          console.log(error);
+        }
     }
-  }, [email]);
-  return [userData];
+  });
+  return [userData, isLoading];
 };
 
 export default useUserData;

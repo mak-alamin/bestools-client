@@ -1,8 +1,5 @@
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { Route, Routes } from "react-router-dom";
-import auth from "./firebase.init";
-import useUserRole from "./hooks/useUserRole";
 import About from "./Pages/About/About";
 import Blog from "./Pages/Blog";
 import Dashboard from "./Pages/Dashboard/Dashboard";
@@ -20,10 +17,6 @@ import Notfound from "./Pages/Notfound";
 import Portfolio from "./Pages/Portfolio/Portfolio";
 
 const BestoolRoutes = () => {
-  const[user] = useAuthState(auth);
-
-  const [userRole] = useUserRole(user);
-
     return (
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
@@ -40,7 +33,7 @@ const BestoolRoutes = () => {
               </RequireAuth>
             }
           >
-            <Route path="users" element={<Users userRole={userRole}></Users>} ></Route>
+            <Route path="users" element={<Users></Users>} ></Route>
 
             <Route
               index
@@ -52,7 +45,7 @@ const BestoolRoutes = () => {
 
             <Route path="my-reviews" element={<MyReviews></MyReviews>}></Route>
           
-            <Route path="products" element={ <Products userRole={userRole}></Products> }></Route>
+            <Route path="products" element={ <Products></Products> }></Route>
 
             <Route path="manage-orders" element={ <Orders></Orders> }></Route>
           </Route>

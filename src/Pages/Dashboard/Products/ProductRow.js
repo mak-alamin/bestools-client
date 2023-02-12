@@ -4,6 +4,8 @@ import UpdateProduct from './UpdateProduct';
 const ProductRow = ({product, refetch, setDeletingProduct, openDrawer}) => {
     const {title,img_url,price, description,stock_qty,min_order_qty, } = product;
 
+    refetch();
+    
     return (
         <tr>
             <td><img src={img_url} alt={title} width="60" /></td>

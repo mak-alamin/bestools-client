@@ -7,7 +7,7 @@ import LeftMenu from "./LeftMenu";
 const Dashboard = () => {
   const [user, loading] = useAuthState(auth);
 
-  console.log(user);
+  // console.log(user);
 
   if (loading) {
     return <progress className="progress w-56"></progress>;
