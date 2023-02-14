@@ -1,15 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import { bestoolContext } from "../../../App";
+import useProducts from "../../../hooks/useProducts";
 import useUserRole from "../../../hooks/useUserRole";
 import Notfound from "../../Notfound";
 import Loading from "../../Shared/Loading";
+import auth from './../../../firebase.init';
 import ConfirmModal from "./../../Shared/ConfirmModal";
 import AddProduct from "./AddProduct";
 import ProductRow from "./ProductRow";
-import auth from './../../../firebase.init';
 
 const Products = () => {
   const[user] = useAuthState(auth);
@@ -20,22 +20,7 @@ const Products = () => {
 
   const [deletingProduct, setDeletingProduct] = useState(null);
 
-  const { data: products, isLoading, refetch } = useQuery({
-    queryKey: ['products'],
-    queryFn: async () => {
-        try {
-            const res = await fetch("http://localhost:5000/product", {
-              method: "GET",
-            });
-
-            const data = await res.json();
-            
-            return data;
-        } catch (error) {
-          console.log(error);
-        }
-    }
-  });
+  const [products, isLoading, refetch] = useProducts(null);
 
   const openDrawer = (component) => {
     setDrawerInfo({
@@ -45,7 +30,6 @@ const Products = () => {
     })
   }
 
-  
   const closeModal = () => {
     setDeletingProduct(null);
   }

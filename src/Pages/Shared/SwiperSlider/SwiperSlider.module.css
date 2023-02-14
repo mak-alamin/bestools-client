@@ -22,3 +22,7 @@
 .slider2 h1 {
   text-align: right;
 }
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  color: #737373;
+}

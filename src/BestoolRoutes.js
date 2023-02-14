@@ -15,6 +15,7 @@ import Register from "./Pages/Login/Register";
 import RequireAuth from "./Pages/Login/RequireAuth";
 import Notfound from "./Pages/Notfound";
 import Portfolio from "./Pages/Portfolio/Portfolio";
+import Purchase from './Pages/Purchase/Purchase';
 
 const BestoolRoutes = () => {
     return (
@@ -25,6 +26,14 @@ const BestoolRoutes = () => {
 
           <Route path="my-portfolio" element={<Portfolio></Portfolio>}></Route>
 
+          <Route path="home" element={<Home></Home>}></Route>
+          <Route path="blog" element={<Blog></Blog>}></Route>
+          <Route path="login" element={<Login></Login>}></Route>
+          <Route path="register" element={<Register></Register>}></Route>
+
+          <Route path="purchase/:id" element={<Purchase></Purchase>}></Route>
+
+          {/* Dashboard Routes */}
           <Route
             path="dashboard"
             element={
@@ -49,11 +58,7 @@ const BestoolRoutes = () => {
 
             <Route path="manage-orders" element={ <Orders></Orders> }></Route>
           </Route>
-
-          <Route path="home" element={<Home></Home>}></Route>
-          <Route path="blog" element={<Blog></Blog>}></Route>
-          <Route path="login" element={<Login></Login>}></Route>
-          <Route path="register" element={<Register></Register>}></Route>
+          {/* Dashboard Routes end */}
 
           <Route path="*" element={<Notfound></Notfound>}></Route>
         </Routes>

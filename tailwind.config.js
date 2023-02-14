@@ -5,7 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        'primary': '#D5A600'
+      },
     },
     container: {
       center: true,
