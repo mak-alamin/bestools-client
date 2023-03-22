@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import About from "./Pages/About/About";
 import Blog from "./Pages/Blog";
@@ -15,54 +15,61 @@ import Register from "./Pages/Login/Register";
 import RequireAuth from "./Pages/Login/RequireAuth";
 import Notfound from "./Pages/Notfound";
 import Portfolio from "./Pages/Portfolio/Portfolio";
-import Purchase from './Pages/Purchase/Purchase';
+import Purchase from "./Pages/Purchase/Purchase";
 
 const BestoolRoutes = () => {
-    return (
-        <Routes>
-          <Route path="/" element={<Home></Home>}></Route>
+  return (
+    <Routes>
+      <Route path="/" element={<Home></Home>}></Route>
 
-          <Route path="about" element={<About></About>}></Route>
+      <Route path="about" element={<About></About>}></Route>
 
-          <Route path="my-portfolio" element={<Portfolio></Portfolio>}></Route>
+      <Route path="my-portfolio" element={<Portfolio></Portfolio>}></Route>
 
-          <Route path="home" element={<Home></Home>}></Route>
-          <Route path="blog" element={<Blog></Blog>}></Route>
-          <Route path="login" element={<Login></Login>}></Route>
-          <Route path="register" element={<Register></Register>}></Route>
+      <Route path="home" element={<Home></Home>}></Route>
+      <Route path="blog" element={<Blog></Blog>}></Route>
+      <Route path="login" element={<Login></Login>}></Route>
+      <Route path="register" element={<Register></Register>}></Route>
 
-          <Route path="purchase/:id" element={<Purchase></Purchase>}></Route>
+      <Route
+        path="purchase/:id"
+        element={
+          <RequireAuth>
+            <Purchase></Purchase>
+          </RequireAuth>
+        }
+      ></Route>
 
-          {/* Dashboard Routes */}
-          <Route
-            path="dashboard"
-            element={
-              <RequireAuth>
-                <Dashboard></Dashboard>
-              </RequireAuth>
-            }
-          >
-            <Route path="users" element={<Users></Users>} ></Route>
+      {/* Dashboard Routes */}
+      <Route
+        path="dashboard"
+        element={
+          <RequireAuth>
+            <Dashboard></Dashboard>
+          </RequireAuth>
+        }
+      >
+        <Route path="users" element={<Users></Users>}></Route>
 
-            <Route
-              index
-              path="my-profile"
-              element={<MyProfile></MyProfile>}
-            ></Route>
+        <Route
+          index
+          path="my-profile"
+          element={<MyProfile></MyProfile>}
+        ></Route>
 
-            <Route path="my-orders" element={<MyOrders></MyOrders>}></Route>
+        <Route path="my-orders" element={<MyOrders></MyOrders>}></Route>
 
-            <Route path="my-reviews" element={<MyReviews></MyReviews>}></Route>
-          
-            <Route path="products" element={ <Products></Products> }></Route>
+        <Route path="my-reviews" element={<MyReviews></MyReviews>}></Route>
 
-            <Route path="manage-orders" element={ <Orders></Orders> }></Route>
-          </Route>
-          {/* Dashboard Routes end */}
+        <Route path="products" element={<Products></Products>}></Route>
 
-          <Route path="*" element={<Notfound></Notfound>}></Route>
-        </Routes>
-    );
+        <Route path="manage-orders" element={<Orders></Orders>}></Route>
+      </Route>
+      {/* Dashboard Routes end */}
+
+      <Route path="*" element={<Notfound></Notfound>}></Route>
+    </Routes>
+  );
 };
 
 export default BestoolRoutes;
