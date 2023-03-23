@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 
-const useProducts = () => {
+const useProduct = (id) => {
   const {
-    data: products,
+    data: product,
     isLoading,
     refetch,
   } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:8000/product", {
+        const res = await fetch(`http://localhost:8000/product/${id}`, {
           method: "GET",
         });
 
@@ -21,7 +21,7 @@ const useProducts = () => {
       }
     },
   });
-  return [products, isLoading, refetch];
+  return [product, isLoading, refetch];
 };
 
-export default useProducts;
+export default useProduct;

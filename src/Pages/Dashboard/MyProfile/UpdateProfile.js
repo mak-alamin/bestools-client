@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
@@ -14,21 +14,20 @@ const UpdateProfile = () => {
   const email = user?.email;
 
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ['users'],
+    queryKey: ["users"],
     queryFn: async () => {
-        try {
-            const res = await fetch(`http://localhost:5000/user/${email}`, {
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
-                }
-            });
-            const data = await res.json();
-            return data;
-        }
-        catch (error) {
-          console.log(error);
-        }
-    }
+      try {
+        const res = await fetch(`http://localhost:8000/user/${email}`, {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        });
+        const data = await res.json();
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   });
 
   const {
@@ -39,7 +38,7 @@ const UpdateProfile = () => {
 
   // Update Profile on Submit
   const handleUpdateProfile = (data) => {
-    fetch(`http://localhost:5000/user/${email}`, {
+    fetch(`http://localhost:8000/user/${email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -58,7 +57,7 @@ const UpdateProfile = () => {
       });
   };
 
-  if ( loading || isLoading ) {
+  if (loading || isLoading) {
     return <Loading></Loading>;
   }
 

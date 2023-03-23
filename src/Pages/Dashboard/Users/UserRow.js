@@ -5,30 +5,30 @@ const UserRow = ({ user, refetch }) => {
   const { name, email, role } = user;
   const makeAdmin = () => {
     try {
-      fetch(`http://localhost:5000/user/admin/${email}`, {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
-      .then((res) => {
-        if (res.status === 403) {
-          toast.error("Failed to Make an admin");
-        }
-        return res.json();
+      fetch(`http://localhost:8000/user/admin/${email}`, {
+        method: "PUT",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
       })
-      .then((data) => {
-        if (data.modifiedCount > 0) {
-          refetch();
-          toast.success(`Successfully made an admin`);
-        }
-      });
+        .then((res) => {
+          if (res.status === 403) {
+            toast.error("Failed to Make an admin");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          if (data.modifiedCount > 0) {
+            refetch();
+            toast.success(`Successfully made an admin`);
+          }
+        });
     } catch (error) {
       console.log(error);
-      toast.error('Something went wrong! Please try again latter');
+      toast.error("Something went wrong! Please try again latter");
     }
   };
-  
+
   return (
     <tr>
       <td>{name}</td>
@@ -47,7 +47,9 @@ const UserRow = ({ user, refetch }) => {
         )}
       </td>
       <td>
-        <button className="btn btn-xs btn-outline btn-error rounded">Delete</button>
+        <button className="btn btn-xs btn-outline btn-error rounded">
+          Delete
+        </button>
       </td>
     </tr>
   );

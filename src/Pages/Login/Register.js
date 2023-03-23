@@ -2,7 +2,7 @@ import React from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
-  useUpdateProfile
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -48,14 +48,14 @@ const Register = () => {
     navigate("/login");
   }
 
-const createUser = (data) => {
+  const createUser = (data) => {
     const email = user?.email;
     const displayName = user?.name;
 
     const currentUser = { name: displayName, email: email };
 
     if (email) {
-      fetch(`http://localhost:5000/user/${email}`, {
+      fetch(`http://localhost:8000/user/${email}`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -67,10 +67,13 @@ const createUser = (data) => {
           console.log(data);
         });
     }
-};
+  };
 
   const onSubmit = async (data) => {
-    let result = await createUserWithEmailAndPassword(data.email, data.password);
+    let result = await createUserWithEmailAndPassword(
+      data.email,
+      data.password
+    );
 
     console.log(result);
 
