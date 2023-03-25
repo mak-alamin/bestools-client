@@ -45,3 +45,14 @@
   z-index: 99;
   display: none;
 }
+
+/* Checkout */
+.checkout-area .form-control {
+  margin-bottom: 10px;
+}
+.checkout-area form {
+  background: #03a9f41c;
+  padding: 40px;
+  max-width: 580px;
+  border-radius: 12px;
+}

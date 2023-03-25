@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import About from "./Pages/About/About";
 import Blog from "./Pages/Blog";
+import Checkout from "./Pages/Checkout/Checkout";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyOrders from "./Pages/Dashboard/MyOrders/MyOrders";
 import MyProfile from "./Pages/Dashboard/MyProfile/MyProfile";
@@ -36,6 +37,15 @@ const BestoolRoutes = () => {
         element={
           <RequireAuth>
             <Purchase></Purchase>
+          </RequireAuth>
+        }
+      ></Route>
+     
+      <Route
+        path="checkout"
+        element={
+          <RequireAuth>
+            <Checkout></Checkout>
           </RequireAuth>
         }
       ></Route>

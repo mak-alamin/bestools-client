@@ -1,0 +1,10 @@
+1. install stripe react stripe js
+2. open stripe account on stripe website
+3. get publishable key pk_
+4. Create Elements wrapper using pk_
+5. Create Payment form using Card Element, useStripe, useElements 
+6. Get Card Elements info (credit card info)
+7. Get credit card info/error + display error (if any)
+------------
+8. get client secret from server via payment intent post api
+9. Store client secret on the client side

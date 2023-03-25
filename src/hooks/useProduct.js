@@ -4,7 +4,7 @@ const useProduct = (id) => {
   const {
     data: product,
     isLoading,
-    refetch,
+    refetch
   } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
@@ -21,6 +21,7 @@ const useProduct = (id) => {
       }
     },
   });
+
   return [product, isLoading, refetch];
 };
 
