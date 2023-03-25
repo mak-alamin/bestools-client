@@ -3,6 +3,7 @@ import useProduct from "../../hooks/useProduct";
 import Checkout from "../Checkout/Checkout";
 import Notfound from "../Notfound";
 import Loading from "../Shared/Loading";
+import ThankYou from "../ThankYou/ThankYou";
 
 const Purchase = () => {
   const tool_id = window.location.href.split("purchase/")[1];
@@ -12,6 +13,9 @@ const Purchase = () => {
   const [product, isLoading, refetch] = useProduct(tool_id);
 
   const [isCheckout, setIsCheckout] = useState(0);
+
+  const [thankYou, setThankYou] = useState(0);
+  const [thankYouContent, setThankYouContent] = useState("");
 
   useEffect(() => {
     setQuantity(product?.min_order_qty);
@@ -32,6 +36,10 @@ const Purchase = () => {
 
   if (!product) {
     return <Notfound></Notfound>;
+  }
+
+  if (thankYou) {
+    return <ThankYou content={thankYouContent}></ThankYou>;
   }
 
   return (
@@ -71,7 +79,12 @@ const Purchase = () => {
       </div>
 
       {isCheckout ? (
-        <Checkout productInfo={product} quantity={quantity}></Checkout>
+        <Checkout
+          productInfo={product}
+          quantity={quantity}
+          setThankYou={setThankYou}
+          setThankYouContent={setThankYouContent}
+        ></Checkout>
       ) : (
         ""
       )}
