@@ -17,18 +17,21 @@ import RequireAuth from "./Pages/Login/RequireAuth";
 import Notfound from "./Pages/Notfound";
 import Portfolio from "./Pages/Portfolio/Portfolio";
 import Purchase from "./Pages/Purchase/Purchase";
+import Tools from "./Pages/Tools/Tools";
 
 const BestoolRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home></Home>}></Route>
+      <Route path="home" element={<Home></Home>}></Route>
+      
+      <Route path="tools" element={<Tools></Tools>}></Route>
 
       <Route path="about" element={<About></About>}></Route>
-
       <Route path="my-portfolio" element={<Portfolio></Portfolio>}></Route>
 
-      <Route path="home" element={<Home></Home>}></Route>
       <Route path="blog" element={<Blog></Blog>}></Route>
+
       <Route path="login" element={<Login></Login>}></Route>
       <Route path="register" element={<Register></Register>}></Route>
 

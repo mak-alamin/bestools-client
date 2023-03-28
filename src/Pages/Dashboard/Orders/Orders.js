@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
+import useOrders from "../../../hooks/useOrders";
+import OrderRow from "./OrderRow";
 
 const Orders = () => {
-    return (
-        <div className="container pt-1">
+  const [orders, isLoading, refetch] = useOrders();
+
+  const [deletingOrder, setDeletingOrder] = useState(false);
+
+  console.log(orders);
+
+  return (
+    <div className="container pt-1">
       <div className="drawer drawer-mobile">
         <input
           id="dashboard-sidebar"
@@ -11,27 +19,35 @@ const Orders = () => {
           className="drawer-toggle"
         />
         <div className="drawer-content p-5">
-          <h2 className="text-2xl font-bold text-purple-500">All Orders</h2>
+          <h2 className="text-2xl font-bold text-purple-500 mb-2">All Orders</h2>
           <div className="overflow-x-auto">
             <table className="table w-full">
               <thead>
                 <tr>
                   <th>Order</th>
-                  <th>Date</th>
                   <th>Status</th>
-                  <th>Billing</th>
+                  <th>Billing Info</th>
                   <th>Total</th>
+                  <th>Date</th>
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody>
+                {orders?.length &&
+                  orders.map((order) => (
+                    <OrderRow key={order._id}
+                      order={order}
+                      refetch={refetch}
+                      setDeletingOrder={setDeletingOrder}
+                    ></OrderRow>
+                  ))}
+              </tbody>
             </table>
           </div>
-          <Outlet></Outlet>
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Orders;

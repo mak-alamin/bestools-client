@@ -26,6 +26,9 @@ const Header = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
+        <Link to="/tools">Tools</Link>
+      </li>
+      <li>
         <Link to="/about">About Us</Link>
       </li>
       <li>
@@ -55,7 +58,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="navbar bg-base-100 border-b z-50">
+      <div className="container navbar bg-base-100 border-b z-50">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex="0" className="btn btn-ghost lg:hidden">
