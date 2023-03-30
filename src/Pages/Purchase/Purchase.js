@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Checkout from "../../components/Checkout/Checkout";
+import Loading from "../../components/Shared/Loading";
 import useProduct from "../../hooks/useProduct";
-import Checkout from "../Checkout/Checkout";
 import Notfound from "../Notfound";
-import Loading from "../Shared/Loading";
 import ThankYou from "../ThankYou/ThankYou";
 
 const Purchase = () => {
-  const tool_id = window.location.href.split("purchase/")[1];
+  const {id} = useParams();
 
   const [quantity, setQuantity] = useState(1);
 
-  const [product, isLoading, refetch] = useProduct(tool_id);
+  const [product, isLoading, refetch] = useProduct(id);
 
   const [isCheckout, setIsCheckout] = useState(0);
 

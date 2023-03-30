@@ -3,9 +3,9 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
 import BestoolRoutes from "./BestoolRoutes";
-import BTDrawer from "./Pages/Shared/BTDrawer/BTDrawer";
-import Footer from "./Pages/Shared/Footer";
-import Header from "./Pages/Shared/Header";
+import BTDrawer from "./components/Shared/BTDrawer/BTDrawer";
+import Footer from "./components/Shared/Footer";
+import Header from "./components/Shared/Header";
 
 export const bestoolContext = createContext();
 

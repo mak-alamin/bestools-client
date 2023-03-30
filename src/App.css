@@ -57,3 +57,7 @@
   max-width: 580px;
   border-radius: 12px;
 }
+
+footer .footer-title {
+  opacity: 1;
+}

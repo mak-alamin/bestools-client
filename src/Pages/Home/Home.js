@@ -1,4 +1,4 @@
-import SwiperSlider from "../Shared/SwiperSlider/SwiperSlider";
+import SwiperSlider from "../../components/Shared/SwiperSlider/SwiperSlider";
 import About from "./About";
 import FeaturedTools from "./FeaturedTools";
 import Testimonial from "./Testimonial";

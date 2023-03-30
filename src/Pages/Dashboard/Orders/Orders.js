@@ -21,7 +21,7 @@ const Orders = () => {
         <div className="drawer-content p-5">
           <h2 className="text-2xl font-bold text-purple-500 mb-2">All Orders</h2>
           <div className="overflow-x-auto">
-            <table className="table w-full">
+            <table className="table w-full text-center">
               <thead>
                 <tr>
                   <th>Order</th>
@@ -29,6 +29,7 @@ const Orders = () => {
                   <th>Billing Info</th>
                   <th>Total</th>
                   <th>Date</th>
+                  <th> Payment</th>
                   <th>Actions</th>
                 </tr>
               </thead>

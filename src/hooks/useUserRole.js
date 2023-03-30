@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 
 const useUserRole = (user) => {
-  console.log(user);
-
   const [userRole, setUserRole] = useState("");
   useEffect(() => {
     const email = user?.email;

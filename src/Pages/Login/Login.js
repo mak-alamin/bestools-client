@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import {
   useSignInWithEmailAndPassword,
-  useSignInWithGoogle
+  useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Loading from "../../components/Shared/Loading";
 import auth from "../../firebase.init";
 import useToken from "../../hooks/useToken";
-import Loading from "../Shared/Loading";
 
 const Login = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -19,7 +19,7 @@ const Login = () => {
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-    
+
   const [token] = useToken(user || gUser);
 
   console.log(token);
@@ -32,7 +32,7 @@ const Login = () => {
   useEffect(() => {
     if (token) {
       // console.log(token);
-      navigate(from, { replace: true, state:{token: token} });
+      navigate(from, { replace: true, state: { token: token } });
     }
   }, [token, from, navigate]);
 

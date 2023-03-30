@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import auth from "../../../firebase.init";
-import BesToolsAlert from "../../Shared/BesToolsAlert";
-import Loading from "../../Shared/Loading";
+import BesToolsAlert from "../../../components/Shared/BesToolsAlert";
+import Loading from "../../../components/Shared/Loading";
 
 const UpdateProduct = ({ product, refetch }) => {
   // console.log(product);

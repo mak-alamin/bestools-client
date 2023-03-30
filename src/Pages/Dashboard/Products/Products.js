@@ -5,9 +5,9 @@ import { bestoolContext } from "../../../App";
 import useProducts from "../../../hooks/useProducts";
 import useUserRole from "../../../hooks/useUserRole";
 import Notfound from "../../Notfound";
-import Loading from "../../Shared/Loading";
+import Loading from "../../../components/Shared/Loading";
 import auth from "./../../../firebase.init";
-import ConfirmModal from "./../../Shared/ConfirmModal";
+import ConfirmModal from "../../../components/Shared/ConfirmModal";
 import AddProduct from "./AddProduct";
 import ProductRow from "./ProductRow";
 

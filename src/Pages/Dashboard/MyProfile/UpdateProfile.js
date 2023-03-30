@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import auth from "../../../firebase.init";
-import BesToolsAlert from "../../Shared/BesToolsAlert";
-import Loading from "../../Shared/Loading";
+import BesToolsAlert from "../../../components/Shared/BesToolsAlert";
+import Loading from "../../../components/Shared/Loading";
 
 const UpdateProfile = () => {
   const [user, loading] = useAuthState(auth);
@@ -19,7 +19,7 @@ const UpdateProfile = () => {
       try {
         const res = await fetch(`http://localhost:8000/user/${email}`, {
           headers: {
-            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
         });
         const data = await res.json();

@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
 
@@ -63,7 +62,9 @@ const Checkout = ({
       .then((res) => {
         if (res.acknowledged) {
           setThankYou(1);
-          setThankYouContent(`Congrats! Your order has been placed. You can manage your orders here:`);
+          setThankYouContent(
+            `Congrats! Your order has been placed. You can manage your orders here:`
+          );
         }
       });
   };

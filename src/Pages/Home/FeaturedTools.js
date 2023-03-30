@@ -1,6 +1,6 @@
 import useProducts from "../../hooks/useProducts";
-import Loading from "../Shared/Loading";
-import ToolCard from "../Shared/ToolCard";
+import Loading from "../../components/Shared/Loading";
+import ToolCard from "../../components/Shared/ToolCard";
 
 const FeaturedTools = () => {
   const [products, isLoading, refetch] = useProducts(null);

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
-const useUserData = ({ email, token }) => {
-  // console.log(email, token);
+const useUserData = ({ email, token  }) => {
+  console.log(email, token);
   const {
     data: userData,
     isLoading,
