@@ -72,7 +72,7 @@ const Products = () => {
           <span className="text-slate-600">({products.length})</span>
           <span
             className="btn btn-sm bg-sky-500 border-0 rounded ml-3"
-            onClick={() => openDrawer(<AddProduct></AddProduct>)}
+            onClick={() => openDrawer(<AddProduct refetch={refetch}></AddProduct>)}
           >
             Add New
           </span>
@@ -92,8 +92,8 @@ const Products = () => {
               </tr>
             </thead>
             <tbody>
-              {products.length &&
-                products.map((product) => (
+              {products.length ?
+                (products.map((product) => (
                   <ProductRow
                     key={product._id}
                     product={product}
@@ -101,7 +101,9 @@ const Products = () => {
                     setDeletingProduct={setDeletingProduct}
                     openDrawer={openDrawer}
                   ></ProductRow>
-                ))}
+                ))) : (
+                  <p className="text-center mt-3">No Product Founds.</p>
+                )}
             </tbody>
           </table>
         </div>

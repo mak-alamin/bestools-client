@@ -6,9 +6,10 @@ import {
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import Loading from "../../components/Shared/Loading";
 import auth from "../../firebase.init";
 import useToken from "../../hooks/useToken";
-import Loading from "../../components/Shared/Loading";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -48,9 +49,9 @@ const Register = () => {
     navigate("/login");
   }
 
-  const createUser = (data) => {
-    const email = user?.email;
-    const displayName = user?.name;
+  const createUserToDB = (data) => {
+    const email = data?.email;
+    const displayName = data?.name;
 
     const currentUser = { name: displayName, email: email };
 
@@ -63,8 +64,11 @@ const Register = () => {
         body: JSON.stringify(currentUser),
       })
         .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
+        .then((resData) => {
+          console.log(resData);
+          if(resData?.acknowledged){
+            toast.success("Registration Successfull.")
+          }
         });
     }
   };
@@ -75,9 +79,7 @@ const Register = () => {
       data.password
     );
 
-    console.log(result);
-
-    createUser(data);
+    createUserToDB(data);
 
     await updateProfile({ displayName: data.name });
   };

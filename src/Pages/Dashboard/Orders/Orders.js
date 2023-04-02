@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
 import useOrders from "../../../hooks/useOrders";
 import OrderRow from "./OrderRow";
 
@@ -19,7 +18,9 @@ const Orders = () => {
           className="drawer-toggle"
         />
         <div className="drawer-content p-5">
-          <h2 className="text-2xl font-bold text-purple-500 mb-2">All Orders</h2>
+          <h2 className="text-2xl font-bold text-purple-500 mb-2">
+            All Orders
+          </h2>
           <div className="overflow-x-auto">
             <table className="table w-full text-center">
               <thead>
@@ -34,14 +35,18 @@ const Orders = () => {
                 </tr>
               </thead>
               <tbody>
-                {orders?.length &&
+                {orders?.length ? (
                   orders.map((order) => (
-                    <OrderRow key={order._id}
+                    <OrderRow
+                      key={order._id}
                       order={order}
                       refetch={refetch}
                       setDeletingOrder={setDeletingOrder}
                     ></OrderRow>
-                  ))}
+                  ))
+                ) : (
+                  <p className="text-center mt-3">No Order Founds.</p>
+                )}
               </tbody>
             </table>
           </div>

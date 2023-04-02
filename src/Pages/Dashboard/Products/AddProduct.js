@@ -5,7 +5,7 @@ import auth from "../../../firebase.init";
 import BesToolsAlert from "../../../components/Shared/BesToolsAlert";
 import Loading from "../../../components/Shared/Loading";
 
-const AddProduct = () => {
+const AddProduct = ({refetch}) => {
   const [user, loading] = useAuthState(auth);
 
   const [alertInfo, setAlertInfo] = useState({});
@@ -47,6 +47,7 @@ const AddProduct = () => {
           reset();
           setProductImg("");
           setSubmitLoader(false);
+          refetch();
         }
       });
   };

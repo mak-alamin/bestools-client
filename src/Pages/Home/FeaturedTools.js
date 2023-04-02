@@ -1,6 +1,6 @@
-import useProducts from "../../hooks/useProducts";
 import Loading from "../../components/Shared/Loading";
 import ToolCard from "../../components/Shared/ToolCard";
+import useProducts from "../../hooks/useProducts";
 
 const FeaturedTools = () => {
   const [products, isLoading, refetch] = useProducts(null);
@@ -15,12 +15,15 @@ const FeaturedTools = () => {
     <div id="featured_tools" className="container my-10 py-10">
       <h2 className="text-4xl text-center font-bold mb-5">Featured Tools</h2>
 
-      <div className="columns-3">
-        {(products && products.length) &&
-          products.map((tool) => {
+      {products && products.length ? (
+        <div className="flex flex-wrap justify-between">
+          {products.map((tool) => {
             return <ToolCard key={tool._id} tool={tool}></ToolCard>;
           })}
-      </div>
+        </div>
+      ) : (
+        <p className="text-center">No Products Found</p>
+      )}
     </div>
   );
 };

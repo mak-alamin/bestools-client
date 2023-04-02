@@ -51,14 +51,17 @@ const Users = () => {
                 </tr>
               </thead>
               <tbody>
-                {users.length &&
+                {users?.length ? (
                   users.map((user) => (
                     <UserRow
                       key={user._id}
                       user={user}
                       refetch={refetch}
                     ></UserRow>
-                  ))}
+                  ))
+                ) : (
+                  <p className="text-center mt-3">No User Founds.</p>
+                )}
               </tbody>
             </table>
           </div>
