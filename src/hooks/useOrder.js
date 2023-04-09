@@ -1,12 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 
-const useOrders = (email = null) => {
-  let url = email
-    ? `http://localhost:8000/orders/${email}`
-    : "http://localhost:8000/orders";
+const useOrder = (id) => {
+  let url = `http://localhost:8000/order/${id}`;
 
   const {
-    data: orders,
+    data: order,
     isLoading,
     refetch,
   } = useQuery({
@@ -21,14 +19,14 @@ const useOrders = (email = null) => {
         });
 
         const data = await res.json();
-        
+
         return data;
       } catch (error) {
         console.log(error);
       }
     },
   });
-  return [orders, isLoading, refetch];
+  return [order, isLoading, refetch];
 };
 
-export default useOrders;
+export default useOrder;

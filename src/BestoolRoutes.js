@@ -7,6 +7,7 @@ import MyOrders from "./Pages/Dashboard/MyOrders/MyOrders";
 import MyProfile from "./Pages/Dashboard/MyProfile/MyProfile";
 import MyReviews from "./Pages/Dashboard/MyReviews/MyReviews";
 import Orders from "./Pages/Dashboard/Orders/Orders";
+import Payment from "./Pages/Dashboard/Payment/Payment";
 import Products from "./Pages/Dashboard/Products/Products";
 import Users from "./Pages/Dashboard/Users/Users";
 import Home from "./Pages/Home/Home";
@@ -61,6 +62,8 @@ const BestoolRoutes = () => {
         ></Route>
 
         <Route path="my-orders" element={<MyOrders></MyOrders>}></Route>
+
+        <Route path="payment" element={<Payment></Payment>}></Route>
 
         <Route path="my-reviews" element={<MyReviews></MyReviews>}></Route>
 

@@ -5,9 +5,7 @@ const PaymentForm = ({ order }) => {
   const stripe = useStripe();
   const elements = useElements();
 
-  console.log(order);
-
-  const orderId = order?.id ? order.id : "";
+  const orderId = order?._id ? order._id : 0;
 
   const { userEmail, phone, address } = order;
 
@@ -16,7 +14,7 @@ const PaymentForm = ({ order }) => {
 
   const [success, setSuccess] = useState("");
 
-  const [transactionId, setTransactionId] = "";
+  const [transactionId, setTransactionId] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8000/create-payment-intent", {
@@ -25,7 +23,7 @@ const PaymentForm = ({ order }) => {
         "content-type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
-      body: JSON.stringify({ orderId }),
+      body: JSON.stringify({ orderId: orderId }),
     })
       .then((res) => res.json())
       .then((data) => {

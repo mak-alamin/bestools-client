@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
-import Payment from "../../../components/Payment/Payment";
+import Loading from "../../../components/Shared/Loading";
 import auth from "../../../firebase.init";
 import useOrders from "../../../hooks/useOrders";
-import OrderRow from "../Orders/OrderRow";
+import MyOrderRow from "./MyOrderRow";
 
 const MyOrders = () => {
   const [user] = useAuthState(auth);
 
   const [orders, isLoading, refetch] = useOrders(user?.email);
 
-  const [payingOrder, setPayingOrder] = useState(null);
-
   const [deletingOrder, setDeletingOrder] = useState(false);
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   if (!orders?.length) {
     return (
@@ -41,41 +43,26 @@ const MyOrders = () => {
             <thead>
               <tr>
                 <th>Order</th>
-                <th>Status</th>
                 <th>Billing Info</th>
                 <th>Total</th>
                 <th>Date</th>
-                <th> Payment</th>
+                <th>Payment</th>
+                <th>Order Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {orders?.length &&
                 orders.map((order) => (
-                  <OrderRow
+                  <MyOrderRow
                     key={order._id}
                     order={order}
                     refetch={refetch}
-                    setPayingOrder={setPayingOrder}
                     setDeletingOrder={setDeletingOrder}
-                  ></OrderRow>
+                  ></MyOrderRow>
                 ))}
             </tbody>
           </table>
-        </div>
-
-        {/* Payment Popup */}
-        <input type="checkbox" id="payment-popup" className="modal-toggle" />
-        <div className="modal">
-          <div className="modal-box relative">
-            <label
-              htmlFor="payment-popup"
-              className="btn btn-sm btn-circle absolute right-2 top-2"
-            >
-              ✕
-            </label>
-            <Payment payingOrder={payingOrder}></Payment>
-          </div>
         </div>
       </div>
     </div>

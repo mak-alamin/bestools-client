@@ -1,13 +1,24 @@
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Loading from "../../../components/Shared/Loading";
+import auth from "../../../firebase.init";
 import useOrders from "../../../hooks/useOrders";
+import useUserRole from "../../../hooks/useUserRole";
 import OrderRow from "./OrderRow";
 
 const Orders = () => {
+  const [user] = useAuthState(auth);
+  const [userRole] = useUserRole(user);
+
   const [orders, isLoading, refetch] = useOrders();
 
   const [deletingOrder, setDeletingOrder] = useState(false);
 
   console.log(orders);
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="container pt-1">
@@ -26,11 +37,11 @@ const Orders = () => {
               <thead>
                 <tr>
                   <th>Order</th>
-                  <th>Status</th>
                   <th>Billing Info</th>
                   <th>Total</th>
                   <th>Date</th>
-                  <th> Payment</th>
+                  <th>Payment</th>
+                  <th>Order Status</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -39,6 +50,7 @@ const Orders = () => {
                   orders.map((order) => (
                     <OrderRow
                       key={order._id}
+                      userRole={userRole}
                       order={order}
                       refetch={refetch}
                       setDeletingOrder={setDeletingOrder}

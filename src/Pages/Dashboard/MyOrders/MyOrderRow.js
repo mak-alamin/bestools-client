@@ -1,9 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const OrderRow = ({ order, refetch, setDeletingOrder }) => {
+const MyOrderRow = ({ order, refetch, setDeletingOrder }) => {
   const { _id, userEmail, price, quantity, phone, address } = order;
 
   refetch();
+
+  const navigate = useNavigate();
+
+  const goToPayment = () => {
+    navigate("/dashboard/payment", {
+      replace: true,
+      state: {
+        order: order,
+      },
+    });
+  };
 
   return (
     <tr>
@@ -18,14 +30,18 @@ const OrderRow = ({ order, refetch, setDeletingOrder }) => {
       <td>{}</td>
       <td>
         <span className="text-error">Unpaid</span>{" "}
+        <button
+          className="btn btn-info btn-sm text-white ml-2"
+          onClick={goToPayment}
+        >
+          Pay Now
+        </button>
       </td>
-
       <td>
         <p className="mt-2">
           <span className="text-red-400">Pending</span>{" "}
         </p>
       </td>
-
       <td>
         <label
           onClick={() => setDeletingOrder(order)}
@@ -39,4 +55,4 @@ const OrderRow = ({ order, refetch, setDeletingOrder }) => {
   );
 };
 
-export default OrderRow;
+export default MyOrderRow;

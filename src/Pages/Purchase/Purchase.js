@@ -7,7 +7,7 @@ import Notfound from "../Notfound";
 import ThankYou from "../ThankYou/ThankYou";
 
 const Purchase = () => {
-  const {id} = useParams();
+  const { id } = useParams();
 
   const [quantity, setQuantity] = useState(1);
 
@@ -61,7 +61,7 @@ const Purchase = () => {
         <input
           type="number"
           id="quantity"
-          defaultValue={quantity}
+          defaultValue={product?.min_order_qty}
           min={product?.min_order_qty}
           max={product?.stock_qty}
           onChange={(e) => setQuantity(e.target.value)}
