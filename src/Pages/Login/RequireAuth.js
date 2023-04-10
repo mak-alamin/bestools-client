@@ -20,8 +20,6 @@ const RequireAuth = ({ children }) => {
 
   const [userData, isLoading] = useUserData({ email, token });
 
-  // console.log(userData);
-
   if (loading || isLoading) {
     return <Loading></Loading>;
   }

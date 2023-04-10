@@ -63,7 +63,7 @@ const BestoolRoutes = () => {
 
         <Route path="my-orders" element={<MyOrders></MyOrders>}></Route>
 
-        <Route path="payment" element={<Payment></Payment>}></Route>
+        <Route path="payment/:orderId" element={<Payment></Payment>}></Route>
 
         <Route path="my-reviews" element={<MyReviews></MyReviews>}></Route>
 

@@ -3,11 +3,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loading from "../../../components/Shared/Loading";
 
-const PaymentForm = ({ order }) => {
+const PaymentForm = ({ orderId, order }) => {
   const stripe = useStripe();
   const elements = useElements();
-
-  const orderId = order?._id ? order._id : 0;
 
   const { userEmail, phone, address } = order;
 
@@ -21,20 +19,22 @@ const PaymentForm = ({ order }) => {
   const [transactionId, setTransactionId] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:8000/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify({ orderId: orderId }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.clientSecret) {
-          setClientSecret(data.clientSecret);
-        }
-      });
+    if (orderId) {
+      fetch("http://localhost:8000/create-payment-intent", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify({ orderId: orderId }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data?.clientSecret) {
+            setClientSecret(data.clientSecret);
+          }
+        });
+    }
   }, [orderId]);
 
   // console.log(clientSecret);
@@ -67,7 +67,7 @@ const PaymentForm = ({ order }) => {
       card,
     });
 
-    console.log("[PaymentMethod]", paymentMethod);
+    // console.log("[PaymentMethod]", paymentMethod);
 
     if (error) {
       console.log("[error]", error);
@@ -115,8 +115,6 @@ const PaymentForm = ({ order }) => {
           },
         }
       );
-
-      console.log(res);
 
       setProcessing(false);
 

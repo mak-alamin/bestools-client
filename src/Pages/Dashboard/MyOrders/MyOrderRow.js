@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MyOrderRow = ({ order, refetch, setDeletingOrder }) => {
   const { _id, userEmail, price, quantity, phone, address, paid } = order;
@@ -12,7 +12,7 @@ const MyOrderRow = ({ order, refetch, setDeletingOrder }) => {
     navigate("/dashboard/payment", {
       replace: true,
       state: {
-        order: order,
+        orderId: _id,
       },
     });
   };
@@ -32,12 +32,12 @@ const MyOrderRow = ({ order, refetch, setDeletingOrder }) => {
         {paid && <span className="text-success">Paid</span>}
         {!paid && <span className="text-error">Unpaid</span>}
         {!paid && (
-          <button
+          <Link
+            to={`/dashboard/payment/${_id}`}
             className="btn btn-info btn-sm text-white ml-2"
-            onClick={goToPayment}
           >
             Pay Now
-          </button>
+          </Link>
         )}
       </td>
       <td>
