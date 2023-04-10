@@ -1,5 +1,7 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Loading from "../../../components/Shared/Loading";
 
 const PaymentForm = ({ order }) => {
   const stripe = useStripe();
@@ -11,6 +13,8 @@ const PaymentForm = ({ order }) => {
 
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
+
+  const [processing, setProcessing] = useState(false);
 
   const [success, setSuccess] = useState("");
 
@@ -33,6 +37,8 @@ const PaymentForm = ({ order }) => {
       });
   }, [orderId]);
 
+  // console.log(clientSecret);
+
   const handleSubmit = async (event) => {
     // Block native form submission.
     event.preventDefault();
@@ -53,6 +59,7 @@ const PaymentForm = ({ order }) => {
     }
 
     setSuccess("");
+    setProcessing(true);
 
     // Use your card Element with other Stripe.js APIs
     const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -60,14 +67,14 @@ const PaymentForm = ({ order }) => {
       card,
     });
 
+    console.log("[PaymentMethod]", paymentMethod);
+
     if (error) {
       console.log("[error]", error);
       setCardError(error.message);
-
+      setProcessing(false);
       return;
     }
-
-    console.log("[PaymentMethod]", paymentMethod);
 
     // Confirm card payment
     const { paymentIntent, intentError } = await stripe.confirmCardPayment(
@@ -86,13 +93,33 @@ const PaymentForm = ({ order }) => {
 
     if (intentError) {
       setCardError(intentError?.message);
+      setProcessing(false);
       return;
     }
 
-    console.log(paymentIntent);
-
     if (paymentIntent?.id) {
       setCardError("");
+
+      const paymentData = {
+        paid: true,
+        transactionId: paymentIntent.id,
+      };
+
+      const res = axios.patch(
+        `http://localhost:8000/order/${orderId}`,
+        paymentData,
+        {
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+
+      console.log(res);
+
+      setProcessing(false);
+
       setSuccess("Congrats! Your payment is completed.");
       setTransactionId(paymentIntent.id);
     }
@@ -102,7 +129,10 @@ const PaymentForm = ({ order }) => {
     return (
       <>
         <p className="text-green-500 pt-3">{success}</p>
-        <p className="pt-3">Your Transaction Id: {transactionId}</p>
+        <p className="pt-3">
+          Your Transaction Id:{" "}
+          <span className="text-orange-500"> {transactionId} </span>
+        </p>
       </>
     );
   }
@@ -127,13 +157,14 @@ const PaymentForm = ({ order }) => {
       />
       <button
         type="submit"
-        disabled={!stripe || !elements || !clientSecret}
+        disabled={!stripe || !elements || !clientSecret || success}
         className="btn btn-info mt-5 px-10 text-white"
       >
         Pay
       </button>
 
       {cardError && <p className="text-error pt-3">{cardError}</p>}
+      {processing && <Loading></Loading>}
     </form>
   );
 };

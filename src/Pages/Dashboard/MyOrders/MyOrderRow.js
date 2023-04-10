@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const MyOrderRow = ({ order, refetch, setDeletingOrder }) => {
-  const { _id, userEmail, price, quantity, phone, address } = order;
+  const { _id, userEmail, price, quantity, phone, address, paid } = order;
 
   refetch();
 
@@ -29,13 +29,16 @@ const MyOrderRow = ({ order, refetch, setDeletingOrder }) => {
 
       <td>{}</td>
       <td>
-        <span className="text-error">Unpaid</span>{" "}
-        <button
-          className="btn btn-info btn-sm text-white ml-2"
-          onClick={goToPayment}
-        >
-          Pay Now
-        </button>
+        {paid && <span className="text-success">Paid</span>}
+        {!paid && <span className="text-error">Unpaid</span>}
+        {!paid && (
+          <button
+            className="btn btn-info btn-sm text-white ml-2"
+            onClick={goToPayment}
+          >
+            Pay Now
+          </button>
+        )}
       </td>
       <td>
         <p className="mt-2">

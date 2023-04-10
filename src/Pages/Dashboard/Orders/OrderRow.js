@@ -1,7 +1,16 @@
 import React from "react";
 
 const OrderRow = ({ order, refetch, setDeletingOrder }) => {
-  const { _id, userEmail, price, quantity, phone, address } = order;
+  const {
+    _id,
+    userEmail,
+    price,
+    quantity,
+    phone,
+    address,
+    paid,
+    transactionId,
+  } = order;
 
   refetch();
 
@@ -17,7 +26,15 @@ const OrderRow = ({ order, refetch, setDeletingOrder }) => {
 
       <td>{}</td>
       <td>
-        <span className="text-error">Unpaid</span>{" "}
+        {paid && <p className="text-success">Paid</p>}
+
+        {/* {paid && (
+          <p>
+            Transaction ID: <span className="text-info"></span> {transactionId}
+          </p>
+        )} */}
+
+        {!paid && <span className="text-error">Unpaid</span>}
       </td>
 
       <td>

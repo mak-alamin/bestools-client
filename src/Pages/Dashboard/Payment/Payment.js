@@ -1,17 +1,13 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import PaymentForm from "./PaymentForm";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
 const Payment = () => {
-  const { id } = useParams();
-
   const location = useLocation();
-
-  console.log(location);
 
   const order = location.state?.order;
 
@@ -19,6 +15,12 @@ const Payment = () => {
     return (
       <div className="container pt-1">
         <p>Order Not Found!</p>
+      </div>
+    );
+  } else if (order?.paid) {
+    return (
+      <div className="container pt-1">
+        <p className="text-success">This Order is paid.</p>
       </div>
     );
   } else {
