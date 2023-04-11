@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 
 const OrderRow = ({ order, refetch, setDeletingOrder }) => {
@@ -10,9 +11,29 @@ const OrderRow = ({ order, refetch, setDeletingOrder }) => {
     address,
     paid,
     transactionId,
+    shipped,
   } = order;
 
   refetch();
+
+  const handleShipping = async (orderId) => {
+    let shippingData = {
+      shipped: !shipped,
+    };
+
+    const res = await axios.patch(
+      `http://localhost:8000/order/${orderId}`,
+      shippingData,
+      {
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    );
+
+    refetch();
+  };
 
   return (
     <tr>
@@ -37,8 +58,24 @@ const OrderRow = ({ order, refetch, setDeletingOrder }) => {
       </td>
 
       <td>
-        <p className="mt-2">
-          <span className="text-red-400">Pending</span>{" "}
+        <p className="mt-2 form-control">
+          {" "}
+          <label className="cursor-pointer label">
+            <span className="label-text">
+              {shipped && <span className="text-green-400">Shipped</span>}
+
+              {!shipped && <span className="text-red-400">Pending</span>}
+            </span>
+            <input
+              type="checkbox"
+              className="toggle toggle-accent tooltip"
+              data-tip={shipped ? "Set to Pending" : "Complete Shipping"}
+              onChange={() => {
+                handleShipping(_id);
+              }}
+              checked={shipped}
+            />
+          </label>
         </p>
       </td>
 

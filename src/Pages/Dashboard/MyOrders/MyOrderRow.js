@@ -2,7 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const MyOrderRow = ({ order, refetch, setDeletingOrder }) => {
-  const { _id, userEmail, price, quantity, phone, address, paid } = order;
+  const {
+    _id,
+    userEmail,
+    price,
+    quantity,
+    phone,
+    address,
+    paid,
+    transactionId,
+    shipped,
+  } = order;
 
   refetch();
 
@@ -16,7 +26,14 @@ const MyOrderRow = ({ order, refetch, setDeletingOrder }) => {
       </td>
       <td>${price * quantity}</td>
       <td>
-        {paid && <span className="text-success">Paid</span>}
+        {paid && (
+          <>
+            <p className="text-success">Paid</p>
+            <p>Transaction ID:</p>
+            <p className="text-orange-400"> {transactionId}</p>
+          </>
+        )}
+
         {!paid && <span className="text-error">Unpaid</span>}
         {!paid && (
           <Link
@@ -29,7 +46,8 @@ const MyOrderRow = ({ order, refetch, setDeletingOrder }) => {
       </td>
       <td>
         <p className="mt-2">
-          <span className="text-red-400">Pending</span>{" "}
+          {shipped && <span className="text-green-400">Shipped</span>}
+          {!shipped && <span className="text-red-400">Pending</span>}
         </p>
       </td>
       <td>

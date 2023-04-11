@@ -1,7 +1,7 @@
 const About = () => {
   return (
     <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex-col lg:flex-row">
+      <div className="hero-content flex-col lg:flex-row gap-30">
         <img
           src="https://placeimg.com/260/400/arch"
           className="max-w-sm rounded-lg shadow-2xl"
@@ -16,7 +16,7 @@ const About = () => {
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <button className="btn btn-primary">Get Your Tool</button>
         </div>
       </div>
     </div>

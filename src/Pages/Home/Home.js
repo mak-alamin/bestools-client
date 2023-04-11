@@ -1,6 +1,7 @@
 import SwiperSlider from "../../components/Shared/SwiperSlider/SwiperSlider";
 import About from "./About";
 import FeaturedTools from "./FeaturedTools";
+import Reviews from "./Reviews";
 import Testimonial from "./Testimonial";
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
       <FeaturedTools></FeaturedTools>
       <Testimonial></Testimonial>
       <About></About>
+      <Reviews></Reviews>
     </>
   );
 };
