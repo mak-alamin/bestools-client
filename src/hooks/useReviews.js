@@ -1,27 +1,27 @@
 import { useQuery } from "@tanstack/react-query";
 
-const useProducts = () => {
+const useReviews = () => {
   const {
-    data: products,
+    data: reviews,
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["reviews"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:8000/product", {
+        const res = await fetch("http://localhost:8000/reviews", {
           method: "GET",
         });
 
         const data = await res.json();
-        
+
         return data;
       } catch (error) {
         console.log(error);
       }
     },
   });
-  return [products, isLoading, refetch];
+  return [reviews, isLoading, refetch];
 };
 
-export default useProducts;
+export default useReviews;

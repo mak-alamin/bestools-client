@@ -15,7 +15,7 @@ const FeaturedTools = () => {
 
       {products && products.length ? (
         <div className="flex flex-wrap">
-          {products.map((tool) => {
+          {products.slice(-8).map((tool) => {
             return <ToolCard key={tool._id} tool={tool}></ToolCard>;
           })}
         </div>

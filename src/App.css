@@ -58,6 +58,19 @@
   border-radius: 12px;
 }
 
+.rating {
+  align-items: baseline;
+}
+.rating span {
+  font-size: 20px;
+}
+.rating [type="radio"]{
+  border: 0;
+}
+.rating [type="radio"]:checked {
+  background: #0e9f6e;
+}
+
 footer .footer-title {
   opacity: 1;
 }

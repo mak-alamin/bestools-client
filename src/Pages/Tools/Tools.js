@@ -9,8 +9,6 @@ const Tools = () => {
     return <Loading></Loading>;
   }
 
-  console.log(products);
-
   return (
     <div id="our_tools" className="container py-10">
       <h2 className="text-4xl text-center font-bold mb-5">Our Tools</h2>
