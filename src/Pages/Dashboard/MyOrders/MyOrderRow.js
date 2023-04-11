@@ -1,21 +1,10 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const MyOrderRow = ({ order, refetch, setDeletingOrder }) => {
   const { _id, userEmail, price, quantity, phone, address, paid } = order;
 
   refetch();
-
-  const navigate = useNavigate();
-
-  const goToPayment = () => {
-    navigate("/dashboard/payment", {
-      replace: true,
-      state: {
-        orderId: _id,
-      },
-    });
-  };
 
   return (
     <tr>
@@ -26,8 +15,6 @@ const MyOrderRow = ({ order, refetch, setDeletingOrder }) => {
         <p>Address: {address}</p>
       </td>
       <td>${price * quantity}</td>
-
-      <td>{}</td>
       <td>
         {paid && <span className="text-success">Paid</span>}
         {!paid && <span className="text-error">Unpaid</span>}
@@ -46,13 +33,23 @@ const MyOrderRow = ({ order, refetch, setDeletingOrder }) => {
         </p>
       </td>
       <td>
-        <label
-          onClick={() => setDeletingOrder(order)}
-          htmlFor="confirmation-modal"
-          className="btn btn-xs btn-outline btn-error rounded"
-        >
-          Cancel
-        </label>
+        <p>
+          <button className="btn btn-info btn-outline rounded btn-xs mb-1">
+            View
+          </button>
+        </p>
+
+        {!paid && (
+          <p>
+            <label
+              onClick={() => setDeletingOrder(order)}
+              htmlFor="my-order-confirm"
+              className="btn btn-xs btn-outline btn-error rounded"
+            >
+              Cancel
+            </label>
+          </p>
+        )}
       </td>
     </tr>
   );

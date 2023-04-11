@@ -23,16 +23,15 @@ const OrderRow = ({ order, refetch, setDeletingOrder }) => {
         <p>Address: {address}</p>
       </td>
       <td>${price * quantity}</td>
-
-      <td>{}</td>
       <td>
         {paid && <p className="text-success">Paid</p>}
 
-        {/* {paid && (
-          <p>
-            Transaction ID: <span className="text-info"></span> {transactionId}
-          </p>
-        )} */}
+        {paid && (
+          <>
+            <p>Transaction ID:</p>
+            <p className="text-orange-400"> {transactionId}</p>
+          </>
+        )}
 
         {!paid && <span className="text-error">Unpaid</span>}
       </td>
@@ -44,13 +43,23 @@ const OrderRow = ({ order, refetch, setDeletingOrder }) => {
       </td>
 
       <td>
-        <label
-          onClick={() => setDeletingOrder(order)}
-          htmlFor="confirmation-modal"
-          className="btn btn-xs btn-outline btn-error rounded"
-        >
-          Cancel
-        </label>
+        <p>
+          <button className="btn btn-info btn-outline rounded btn-xs mb-1">
+            View
+          </button>
+        </p>
+
+        {!paid && (
+          <p>
+            <label
+              onClick={() => setDeletingOrder(order)}
+              htmlFor="order-confirm"
+              className="btn btn-xs btn-outline btn-error rounded"
+            >
+              Cancel
+            </label>
+          </p>
+        )}
       </td>
     </tr>
   );

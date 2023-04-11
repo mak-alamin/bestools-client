@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { Outlet } from "react-router-dom";
 import Loading from "../../../components/Shared/Loading";
 import UserRow from "./UserRow";
 
@@ -39,7 +38,7 @@ const Users = () => {
           className="drawer-toggle"
         />
         <div className="drawer-content p-5">
-          <h2 className="text-2xl">All Users: {users?.length}</h2>
+          <h2 className="text-2xl font-bold text-purple-500 mb-3">All Users</h2>
           <div className="overflow-x-auto">
             <table className="table w-full">
               <thead>
@@ -65,7 +64,6 @@ const Users = () => {
               </tbody>
             </table>
           </div>
-          <Outlet></Outlet>
         </div>
       </div>
     </div>

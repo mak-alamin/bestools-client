@@ -7,7 +7,7 @@ const PaymentForm = ({ orderId, order }) => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const { userEmail, phone, address } = order;
+  const { price, quantity, userEmail, phone, address } = order;
 
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
@@ -118,7 +118,7 @@ const PaymentForm = ({ orderId, order }) => {
 
       setProcessing(false);
 
-      setSuccess("Congrats! Your payment is completed.");
+      setSuccess(`Congrats! Your payment is completed for Order-${orderId}`);
       setTransactionId(paymentIntent.id);
     }
   };
@@ -137,6 +137,10 @@ const PaymentForm = ({ orderId, order }) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h3 className="text-lg font-bold my-6">
+        Pay <span className="text-info"> ${price * quantity} </span> for Order-
+        {orderId && orderId.slice(-6)}
+      </h3>
       <CardElement
         options={{
           style: {

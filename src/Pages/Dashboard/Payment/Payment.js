@@ -36,18 +36,10 @@ const Payment = () => {
       </div>
     );
   } else {
-    const { _id, price, quantity } = order;
-
     return (
       <div className="container p-10 card bg-base-100 shadow-xl max-w-[600px]">
         <h1 className="text-2xl mb-2 font-bold">Payment</h1>
         <hr />
-
-        <h3 className="text-lg font-bold my-6">
-          Pay <span className="text-info"> ${price * quantity} </span> for
-          Order-
-          {_id && _id.slice(-6)}
-        </h3>
         <Elements stripe={stripePromise}>
           <PaymentForm orderId={orderId} order={order}></PaymentForm>
         </Elements>

@@ -18,7 +18,7 @@ const ProductRow = ({product, refetch, setDeletingProduct, openDrawer}) => {
             
             <button onClick={() => openDrawer(<UpdateProduct product={product} refetch={refetch} ></UpdateProduct>)} className="btn btn-xs bg-sky-500 border-0 rounded mr-3">Edit</button>
 
-            <label onClick={() => setDeletingProduct(product)}  htmlFor="confirmation-modal" className="btn btn-xs btn-outline btn-error rounded">Delete</label>
+            <label onClick={() => setDeletingProduct(product)}  htmlFor="product-confirm-modal" className="btn btn-xs btn-outline btn-error rounded">Delete</label>
             </td>
         </tr>
     );

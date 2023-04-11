@@ -2,12 +2,12 @@ import React, { useContext, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import { bestoolContext } from "../../../App";
+import ConfirmModal from "../../../components/Shared/ConfirmModal";
+import Loading from "../../../components/Shared/Loading";
 import useProducts from "../../../hooks/useProducts";
 import useUserRole from "../../../hooks/useUserRole";
 import Notfound from "../../Notfound";
-import Loading from "../../../components/Shared/Loading";
 import auth from "./../../../firebase.init";
-import ConfirmModal from "../../../components/Shared/ConfirmModal";
 import AddProduct from "./AddProduct";
 import ProductRow from "./ProductRow";
 
@@ -72,7 +72,9 @@ const Products = () => {
           <span className="text-slate-600">({products.length})</span>
           <span
             className="btn btn-sm bg-sky-500 border-0 rounded ml-3"
-            onClick={() => openDrawer(<AddProduct refetch={refetch}></AddProduct>)}
+            onClick={() =>
+              openDrawer(<AddProduct refetch={refetch}></AddProduct>)
+            }
           >
             Add New
           </span>
@@ -92,8 +94,8 @@ const Products = () => {
               </tr>
             </thead>
             <tbody>
-              {products.length ?
-                (products.map((product) => (
+              {products.length ? (
+                products.map((product) => (
                   <ProductRow
                     key={product._id}
                     product={product}
@@ -101,20 +103,22 @@ const Products = () => {
                     setDeletingProduct={setDeletingProduct}
                     openDrawer={openDrawer}
                   ></ProductRow>
-                ))) : (
-                  <p className="text-center mt-3">No Product Founds.</p>
-                )}
+                ))
+              ) : (
+                <p className="text-center mt-3">No Product Founds.</p>
+              )}
             </tbody>
           </table>
         </div>
       </div>
       {deletingProduct && (
         <ConfirmModal
+          modalId="product-confirm-modal"
           title={`Are you sure you want to delete?`}
           message={`If you delete "${deletingProduct?.title}" it cannot be undone.`}
           successAction={handleDeleteProduct}
           successButtonName="Delete"
-          modalData={deletingProduct}
+          deletingData={deletingProduct}
           closeModal={closeModal}
         ></ConfirmModal>
       )}

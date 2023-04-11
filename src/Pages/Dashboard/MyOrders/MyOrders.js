@@ -5,6 +5,8 @@ import Loading from "../../../components/Shared/Loading";
 import auth from "../../../firebase.init";
 import useOrders from "../../../hooks/useOrders";
 import MyOrderRow from "./MyOrderRow";
+import { toast } from "react-toastify";
+import ConfirmModal from "../../../components/Shared/ConfirmModal";
 
 const MyOrders = () => {
   const [user] = useAuthState(auth);
@@ -12,6 +14,30 @@ const MyOrders = () => {
   const [orders, isLoading, refetch] = useOrders(user?.email);
 
   const [deletingOrder, setDeletingOrder] = useState(false);
+
+  const handleDeleteOrder = (orderId) =>{
+    fetch(`http://localhost:8000/order/${orderId}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          refetch();
+          toast.success(`Order cancelled successfully.`);
+        }
+      })
+      .catch((err) => {
+        toast.error(`Failed to cancel!`);
+        console.log(err);
+      });
+  }
+
+  const closeModal = () => {
+    setDeletingOrder(null);
+  };
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -45,7 +71,6 @@ const MyOrders = () => {
                 <th>Order</th>
                 <th>Billing Info</th>
                 <th>Total</th>
-                <th>Date</th>
                 <th>Payment</th>
                 <th>Order Status</th>
                 <th>Actions</th>
@@ -65,6 +90,19 @@ const MyOrders = () => {
           </table>
         </div>
       </div>
+
+      {deletingOrder && (
+        <ConfirmModal
+          modalId="my-order-confirm"
+          title={`Are you confirmed you want to cancel?`}
+          message={`If you cancel Order-${deletingOrder?._id.slice(-6)}, it cannot be undone.`}
+          successButtonName="Confirm"
+          deletingData={deletingOrder?._id}
+          successAction={handleDeleteOrder}
+          closeButtonName="Go Back"
+          closeModal={closeModal}
+        ></ConfirmModal>
+      )}
     </div>
   );
 };

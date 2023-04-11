@@ -31,25 +31,15 @@ const UserRow = ({ user, refetch }) => {
 
   return (
     <tr>
-      <td>{name}</td>
+      <td>{name ? name : "--"}</td>
       <td>{email}</td>
+      <td>{role ? role : <p> Normal User </p>}</td>
       <td>
-        {role === "admin" ? (
-          "Admin"
-        ) : (
-          <p>
-            {" "}
-            Normal User{" "}
-            <button onClick={makeAdmin} className="btn btn-xs">
-              Make Admin
-            </button>
-          </p>
+        {role !== "admin" && (
+          <button onClick={makeAdmin} className="btn btn-xs">
+            Make Admin
+          </button>
         )}
-      </td>
-      <td>
-        <button className="btn btn-xs btn-outline btn-error rounded">
-          Delete
-        </button>
       </td>
     </tr>
   );

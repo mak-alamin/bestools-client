@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import ConfirmModal from "../../../components/Shared/ConfirmModal";
 import Loading from "../../../components/Shared/Loading";
 import auth from "../../../firebase.init";
 import useOrders from "../../../hooks/useOrders";
 import useUserRole from "../../../hooks/useUserRole";
 import OrderRow from "./OrderRow";
+import { toast } from "react-toastify";
 
 const Orders = () => {
   const [user] = useAuthState(auth);
@@ -12,9 +14,31 @@ const Orders = () => {
 
   const [orders, isLoading, refetch] = useOrders();
 
-  const [deletingOrder, setDeletingOrder] = useState(false);
+  const [deletingOrder, setDeletingOrder] = useState(null);
 
-  console.log(orders);
+  const handleDeleteOrder = (orderId) =>{
+    fetch(`http://localhost:8000/order/${orderId}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          refetch();
+          toast.success(`Order cancelled successfully.`);
+        }
+      })
+      .catch((err) => {
+        toast.error(`Failed to cancel!`);
+        console.log(err);
+      });
+  }
+
+  const closeModal = () => {
+    setDeletingOrder(null);
+  };
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -39,7 +63,6 @@ const Orders = () => {
                   <th>Order</th>
                   <th>Billing Info</th>
                   <th>Total</th>
-                  <th>Date</th>
                   <th>Payment</th>
                   <th>Order Status</th>
                   <th>Actions</th>
@@ -64,6 +87,18 @@ const Orders = () => {
           </div>
         </div>
       </div>
+      {deletingOrder && (
+        <ConfirmModal
+          modalId="order-confirm"
+          title={`Are you confirmed you want to cancel?`}
+          message={`If you cancel Order-${deletingOrder?._id.slice(-6)}, it cannot be undone.`}
+          successButtonName="Confirm"
+          deletingData={deletingOrder?._id}
+          successAction={handleDeleteOrder}
+          closeButtonName="Go Back"
+          closeModal={closeModal}
+        ></ConfirmModal>
+      )}
     </div>
   );
 };

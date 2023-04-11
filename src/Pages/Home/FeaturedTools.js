@@ -14,7 +14,7 @@ const FeaturedTools = () => {
       <h2 className="text-4xl text-center font-bold mb-5">Featured Tools</h2>
 
       {products && products.length ? (
-        <div className="flex flex-wrap justify-between">
+        <div className="flex flex-wrap">
           {products.map((tool) => {
             return <ToolCard key={tool._id} tool={tool}></ToolCard>;
           })}
