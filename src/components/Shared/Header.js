@@ -91,15 +91,17 @@ const Header = () => {
         </div>
 
         <div className="navbar-end">
-          {token ? (
+          {token && userData?.name ? (
             <div className="avator dropdown">
               <label tabIndex={0}>
                 <div className="avatar online placeholder">
                   <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
-                    <p className="text-xl">{userData?.name.charAt(0)}</p>
+                    <p className="text-xl">
+                      {userData?.name && userData?.name.charAt(0)}
+                    </p>
                   </div>
                 </div>
-                <p>{userData?.name}</p>
+                <p>{userData?.name && userData?.name}</p>
                 <FontAwesomeIcon icon={faAngleDown} />
               </label>
               <ul

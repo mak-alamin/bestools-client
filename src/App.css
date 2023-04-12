@@ -90,9 +90,11 @@
   max-width: 580px;
   border-radius: 12px;
 }
-
 .rating {
   align-items: baseline;
+}
+form .rating {
+  align-items: center;
 }
 .rating span {
   font-size: 20px;
@@ -103,6 +105,37 @@
 .rating [type="radio"]:checked {
   background: #0e9f6e;
 }
+
+/* Skills Section */
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  grid-gap: 1rem;
+  padding: 1rem 80px;
+  font-size: 1.2rem;
+}
+.skills-box {
+  padding: 1rem;
+  color: #000;
+  cursor: pointer;
+}
+.skills-box:hover img {
+  transition: 0.3s all ease-in-out;
+  transform: translateY(-20px);
+}
+.skills-icons {
+  width: 50px;
+  margin: 0 auto;
+  z-index: 2;
+}
+.skills-box h3 {
+  color: #333;
+  margin-top: 0.5rem;
+}
+/* Skills end*/
 
 footer .footer-title {
   opacity: 1;

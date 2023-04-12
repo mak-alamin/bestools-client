@@ -9,6 +9,10 @@ const useUserData = ({ email, token }) => {
     queryKey: ["users", email],
     queryFn: async () => {
       try {
+        if (!token || !email) {
+          return null;
+        }
+
         const res = await fetch(`http://localhost:8000/user/${email}`, {
           method: "GET",
           headers: {
