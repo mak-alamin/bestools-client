@@ -12,8 +12,6 @@ const RequireAuth = ({ children }) => {
 
   const location = useLocation();
 
-  // console.log(user);
-
   const token = location?.state?.token || localStorage.getItem("accessToken");
 
   const email = user?.email;
@@ -24,7 +22,7 @@ const RequireAuth = ({ children }) => {
     return <Loading></Loading>;
   }
 
-  if (token && userData) {
+  if (token && userData && !userData?.error) {
     return children;
   } else {
     signOut(auth);

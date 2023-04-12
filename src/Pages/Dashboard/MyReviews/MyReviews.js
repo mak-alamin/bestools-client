@@ -8,6 +8,8 @@ import auth from "../../../firebase.init";
 const MyReviews = () => {
   const [user, loading] = useAuthState(auth);
 
+  console.log(user);
+
   const {
     register,
     handleSubmit,

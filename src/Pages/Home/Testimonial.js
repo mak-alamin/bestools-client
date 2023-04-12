@@ -1,7 +1,7 @@
 const Testimonial = () => {
   return (
     <div className="testimonial flex flex-col mt-10">
-      <div className="overlay pb-5 pt-10">
+      <div className="overlay py-20">
         <h3 className="text-3xl font-bold text-center text-white mb-5">
           Happy Clients Say
         </h3>

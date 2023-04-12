@@ -1,16 +1,24 @@
 import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
-// import useToken from "../../hooks/useToken";
+import useUserData from "../../hooks/useUserData";
+import Loading from "../Shared/Loading";
+
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = () => {
   const location = useLocation();
 
-  // const [user, loading] = useAuthState(auth);
-  // const [token] = useToken(user);
+  const [user, loading] = useAuthState(auth);
 
   const token = location?.state?.token || localStorage.getItem("accessToken");
+
+  const email = user?.email;
+
+  const [userData, isLoading] = useUserData({ email, token });
 
   const navigate = useNavigate();
 
@@ -38,23 +46,12 @@ const Header = () => {
       <li>
         <Link to="/my-portfolio">My Portfolio</Link>
       </li>
-
-      {token && (
-        <li>
-          <Link to="/dashboard">Dashboard</Link>
-        </li>
-      )}
-      <li>
-        {token ? (
-          <button className="btn btn-ghost" onClick={logout}>
-            Sign Out
-          </button>
-        ) : (
-          <Link to="/login">Login</Link>
-        )}
-      </li>
     </>
   );
+
+  if (loading || isLoading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <>
@@ -88,10 +85,42 @@ const Header = () => {
             BESTools
           </Link>
         </div>
+
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">{menuItems}</ul>
         </div>
+
         <div className="navbar-end">
+          {token ? (
+            <div className="avator dropdown">
+              <label tabIndex={0}>
+                <div className="avatar online placeholder">
+                  <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
+                    <p className="text-xl">{userData?.name.charAt(0)}</p>
+                  </div>
+                </div>
+                <p>{userData?.name}</p>
+                <FontAwesomeIcon icon={faAngleDown} />
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu p-2 shadow-lg bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+                <li>
+                  {" "}
+                  <button className="btn btn-ghost" onClick={logout}>
+                    Sign Out
+                  </button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
+
           <label
             tabIndex="1"
             htmlFor="dashboard-sidebar"
