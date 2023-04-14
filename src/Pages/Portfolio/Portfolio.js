@@ -5,7 +5,7 @@ const Portfolio = () => {
     <div className="container py-10 text-center">
       <h2 className="text-4xl font-bold mb-4">My Portfolio</h2>
 
-      <p className="py-6">
+      <p className="pt-6 pb-3">
         {" "}
         <strong>My name:</strong> Md. Abul Kazim (Alamin)
       </p>
@@ -13,6 +13,11 @@ const Portfolio = () => {
       <p className="py-3">
         {" "}
         <strong>Email:</strong> makalamin012@gmail.com
+      </p>
+
+      <p className="py-3">
+        {" "}
+        <strong>Education:</strong> BSc. in Civil Eng. , SUST.
       </p>
 
       <section className="skills pt-20" id="skills">
@@ -70,11 +75,8 @@ const Portfolio = () => {
       </section>
 
       <section className="my-works pt-20">
-        <h2 className="text-4xl text-center font-bold">
-          My Recent Works
-        </h2>
+        <h2 className="text-4xl text-center font-bold">My Recent Works</h2>
         <div className="flex flex-wrap gap-10">
-
           <div className="card w-96 bg-base-100 shadow-lg">
             <div className="card-body items-center text-center">
               <a
@@ -146,7 +148,6 @@ const Portfolio = () => {
               </p>
             </div>
           </div>
-
         </div>
       </section>
     </div>

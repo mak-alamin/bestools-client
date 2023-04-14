@@ -137,6 +137,24 @@ form .rating {
 }
 /* Skills end*/
 
+/* Blog */
+.blog .collapse-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.blog .collapse-title span{
+  font-weight: 500;
+}
+.blog .collapse-title,
+.blog .collapse > input[type="checkbox"] {
+  padding-right: 15px;
+}
+.collapse-content p {
+  color: #242424;
+}
+/* Blog ends */
+
 footer .footer-title {
   opacity: 1;
 }
