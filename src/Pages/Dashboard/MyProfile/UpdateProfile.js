@@ -18,11 +18,14 @@ const UpdateProfile = () => {
     queryKey: ["users"],
     queryFn: async () => {
       try {
-        const res = await fetch(`http://localhost:8000/user/${email}`, {
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        });
+        const res = await fetch(
+          `https://bestools-server.onrender.com/user/${email}`,
+          {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        );
         const data = await res.json();
         return data;
       } catch (error) {
@@ -39,7 +42,7 @@ const UpdateProfile = () => {
 
   // Update Profile on Submit
   const handleUpdateProfile = (data) => {
-    fetch(`http://localhost:8000/user/${email}`, {
+    fetch(`https://bestools-server.onrender.com/user/${email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

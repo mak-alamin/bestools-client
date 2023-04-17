@@ -5,7 +5,7 @@ const createUserToDB = (user) => {
   const currentUser = { name: displayName, email: email };
 
   if (email) {
-    fetch(`http://localhost:8000/user/${email}`, {
+    fetch(`https://bestools-server.onrender.com/user/${email}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

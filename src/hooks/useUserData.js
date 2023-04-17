@@ -13,12 +13,15 @@ const useUserData = ({ email, token }) => {
           return null;
         }
 
-        const res = await fetch(`http://localhost:8000/user/${email}`, {
-          method: "GET",
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await fetch(
+          `https://bestools-server.onrender.com/user/${email}`,
+          {
+            method: "GET",
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         const data = await res.json();
 

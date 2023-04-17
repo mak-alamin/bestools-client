@@ -22,7 +22,7 @@ const OrderRow = ({ order, refetch, setDeletingOrder }) => {
     };
 
     const res = await axios.patch(
-      `http://localhost:8000/order/${orderId}`,
+      `https://bestools-server.onrender.com/order/${orderId}`,
       shippingData,
       {
         headers: {

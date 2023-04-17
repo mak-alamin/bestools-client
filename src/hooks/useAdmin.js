@@ -8,7 +8,7 @@ const useAdmin = (user) => {
     const email = user?.email;
 
     if (email) {
-      fetch(`http://localhost:8000/admin/${email}`, {
+      fetch(`https://bestools-server.onrender.com/admin/${email}`, {
         method: "GET",
         headers: {
           "content-type": "application/json",

@@ -6,10 +6,10 @@ import {
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Loading from "../../components/Shared/Loading";
 import auth from "../../firebase.init";
 import useToken from "../../hooks/useToken";
-import { toast } from "react-toastify";
 
 const Register = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -58,7 +58,7 @@ const Register = () => {
     const currentUser = { name: displayName, email: email };
 
     if (email) {
-      fetch(`http://localhost:8000/user/${email}`, {
+      fetch(`https://bestools-server.onrender.com/user/${email}`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -68,8 +68,8 @@ const Register = () => {
         .then((res) => res.json())
         .then((resData) => {
           console.log(resData);
-          if(resData?.acknowledged){
-            toast.success("Registration Successfull.")
+          if (resData?.acknowledged) {
+            toast.success("Registration Successfull.");
           }
         });
     }

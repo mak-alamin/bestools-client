@@ -6,7 +6,7 @@ const useToken = (user) => {
 
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:8000/jwt?email=${email}`)
+      fetch(`https://bestools-server.onrender.com/jwt?email=${email}`)
         .then((res) => res.json())
         .then((data) => {
           if (data?.accessToken) {

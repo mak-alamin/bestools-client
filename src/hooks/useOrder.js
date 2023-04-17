@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 const useOrder = (id) => {
-  let url = `http://localhost:8000/order/${id}`;
+  let url = `https://bestools-server.onrender.com/order/${id}`;
 
   const {
     data: order,

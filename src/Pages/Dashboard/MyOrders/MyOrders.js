@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import ConfirmModal from "../../../components/Shared/ConfirmModal";
 import Loading from "../../../components/Shared/Loading";
 import auth from "../../../firebase.init";
 import useOrders from "../../../hooks/useOrders";
 import MyOrderRow from "./MyOrderRow";
-import { toast } from "react-toastify";
-import ConfirmModal from "../../../components/Shared/ConfirmModal";
 
 const MyOrders = () => {
   const [user] = useAuthState(auth);
@@ -15,8 +15,8 @@ const MyOrders = () => {
 
   const [deletingOrder, setDeletingOrder] = useState(false);
 
-  const handleDeleteOrder = (orderId) =>{
-    fetch(`http://localhost:8000/order/${orderId}`, {
+  const handleDeleteOrder = (orderId) => {
+    fetch(`https://bestools-server.onrender.com/order/${orderId}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -33,7 +33,7 @@ const MyOrders = () => {
         toast.error(`Failed to cancel!`);
         console.log(err);
       });
-  }
+  };
 
   const closeModal = () => {
     setDeletingOrder(null);
@@ -95,7 +95,9 @@ const MyOrders = () => {
         <ConfirmModal
           modalId="my-order-confirm"
           title={`Are you confirmed you want to cancel?`}
-          message={`If you cancel Order-${deletingOrder?._id.slice(-6)}, it cannot be undone.`}
+          message={`If you cancel Order-${deletingOrder?._id.slice(
+            -6
+          )}, it cannot be undone.`}
           successButtonName="Confirm"
           deletingData={deletingOrder?._id}
           successAction={handleDeleteOrder}

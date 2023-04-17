@@ -9,9 +9,12 @@ const useReviews = () => {
     queryKey: ["reviews"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:8000/reviews", {
-          method: "GET",
-        });
+        const res = await fetch(
+          "https://bestools-server.onrender.com/reviews",
+          {
+            method: "GET",
+          }
+        );
 
         const data = await res.json();
 

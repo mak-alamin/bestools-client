@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 
 const useOrders = (email = null) => {
   let url = email
-    ? `http://localhost:8000/orders/${email}`
-    : "http://localhost:8000/orders";
+    ? `https://bestools-server.onrender.com/orders/${email}`
+    : "https://bestools-server.onrender.com/orders";
 
   const {
     data: orders,
@@ -21,7 +21,7 @@ const useOrders = (email = null) => {
         });
 
         const data = await res.json();
-        
+
         return data;
       } catch (error) {
         console.log(error);

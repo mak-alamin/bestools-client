@@ -12,7 +12,7 @@ const Users = () => {
     queryKey: ["users"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:8000/user", {
+        const res = await fetch("https://bestools-server.onrender.com/user", {
           headers: {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,
           },

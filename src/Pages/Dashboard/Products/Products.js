@@ -36,7 +36,7 @@ const Products = () => {
 
   const handleDeleteProduct = (product) => {
     // console.log(product);
-    fetch(`http://localhost:8000/product/${product._id}`, {
+    fetch(`https://bestools-server.onrender.com/product/${product._id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

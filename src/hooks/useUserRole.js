@@ -5,7 +5,7 @@ const useUserRole = (user) => {
   useEffect(() => {
     const email = user?.email;
     if (email) {
-      fetch(`http://localhost:8000/user/${email}`, {
+      fetch(`https://bestools-server.onrender.com/user/${email}`, {
         method: "GET",
         headers: {
           "content-type": "application/json",

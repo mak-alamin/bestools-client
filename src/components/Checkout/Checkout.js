@@ -22,11 +22,14 @@ const Checkout = ({
     queryKey: ["users"],
     queryFn: async () => {
       try {
-        const res = await fetch(`http://localhost:8000/user/${email}`, {
-          headers: {
-            authorization: `bearer ${localStorage.getItem("accessToken")}`,
-          },
-        });
+        const res = await fetch(
+          `https://bestools-server.onrender.com/user/${email}`,
+          {
+            headers: {
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        );
         const data = await res.json();
         return data;
       } catch (error) {
@@ -50,7 +53,7 @@ const Checkout = ({
       ...formData,
     };
 
-    fetch(`http://localhost:8000/order`, {
+    fetch(`https://bestools-server.onrender.com/order`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

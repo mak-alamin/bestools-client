@@ -4,14 +4,17 @@ const useProduct = (id) => {
   const {
     data: product,
     isLoading,
-    refetch
+    refetch,
   } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       try {
-        const res = await fetch(`http://localhost:8000/product/${id}`, {
-          method: "GET",
-        });
+        const res = await fetch(
+          `https://bestools-server.onrender.com/product/${id}`,
+          {
+            method: "GET",
+          }
+        );
 
         const data = await res.json();
 

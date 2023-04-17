@@ -9,12 +9,15 @@ const useProducts = () => {
     queryKey: ["products"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:8000/product", {
-          method: "GET",
-        });
+        const res = await fetch(
+          "https://bestools-server.onrender.com/product",
+          {
+            method: "GET",
+          }
+        );
 
         const data = await res.json();
-        
+
         return data;
       } catch (error) {
         console.log(error);

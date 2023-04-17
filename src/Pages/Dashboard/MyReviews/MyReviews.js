@@ -34,7 +34,7 @@ const MyReviews = () => {
 
     setSubmitLoader(true);
 
-    fetch(`http://localhost:8000/review`, {
+    fetch(`https://bestools-server.onrender.com/review`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

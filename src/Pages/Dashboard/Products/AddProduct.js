@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import auth from "../../../firebase.init";
 import BesToolsAlert from "../../../components/Shared/BesToolsAlert";
 import Loading from "../../../components/Shared/Loading";
+import auth from "../../../firebase.init";
 
-const AddProduct = ({refetch}) => {
+const AddProduct = ({ refetch }) => {
   const [user, loading] = useAuthState(auth);
 
   const [alertInfo, setAlertInfo] = useState({});
@@ -28,7 +28,7 @@ const AddProduct = ({refetch}) => {
 
     console.log(product);
 
-    fetch(`http://localhost:8000/product`, {
+    fetch(`https://bestools-server.onrender.com/product`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

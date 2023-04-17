@@ -20,7 +20,7 @@ const PaymentForm = ({ orderId, order }) => {
 
   useEffect(() => {
     if (orderId) {
-      fetch("http://localhost:8000/create-payment-intent", {
+      fetch("https://bestools-server.onrender.com/create-payment-intent", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -106,7 +106,7 @@ const PaymentForm = ({ orderId, order }) => {
       };
 
       const res = axios.patch(
-        `http://localhost:8000/order/${orderId}`,
+        `https://bestools-server.onrender.com/order/${orderId}`,
         paymentData,
         {
           headers: {
