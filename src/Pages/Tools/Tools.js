@@ -1,3 +1,4 @@
+import BusinessStats from "../../components/BusinessStats/BusinessStats";
 import Loading from "../../components/Shared/Loading";
 import ToolCard from "../../components/Shared/ToolCard";
 import useProducts from "../../hooks/useProducts";
@@ -10,6 +11,7 @@ const Tools = () => {
   }
 
   return (
+    <>
     <div id="our_tools" className="container py-10">
       <h2 className="text-4xl text-center font-bold mb-5">Our Tools</h2>
 
@@ -23,6 +25,8 @@ const Tools = () => {
         <p className="text-center mt-3">No Tools Found.</p>
       )}
     </div>
+    <BusinessStats></BusinessStats>
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Review = ({ review }) => {
+const Review = ({ review, index }) => {
   const { userName, title, description, rating } = review;
 
   function createNumberArray(n) {
@@ -15,7 +15,8 @@ const Review = ({ review }) => {
       <div className="card-body items-center text-center">
         <div className="avatar">
           <div className="w-16 mask mask-hexagon">
-            <img src="./images/avator-1.jpg" alt="" />
+            {index % 2 === 0 && <img src="./images/avator-2.jpg" alt="" />}
+            {index % 2 === 1 && <img src="./images/avator-1.jpg" alt="" />}
           </div>
         </div>
         <div className="rating">

@@ -16,8 +16,8 @@ const Reviews = () => {
 
       {reviews && reviews.length ? (
         <div className="flex flex-wrap gap-10">
-          {reviews.slice(-6).map((review) => {
-            return <Review key={review?._id} review={review}></Review>;
+          {reviews.slice(-6).map((review, index) => {
+            return <Review key={review?._id} review={review} index={index}></Review>;
           })}
         </div>
       ) : (
