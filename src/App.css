@@ -171,6 +171,9 @@ footer .footer-title {
   .checkout-area form {
     padding: 20px;
   }
+  .skills-container{
+    grid-template-columns: 1fr 1fr;
+  }
   footer .footer > * {
     place-items: unset;
   }

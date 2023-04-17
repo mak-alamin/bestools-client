@@ -23,7 +23,7 @@ const Portfolio = () => {
       </p>
 
       <section className="skills pt-20" id="skills">
-        <h2 className="text-4xl font-bold">My Skills</h2>
+        <h2 className="md:text-4xl text-3xl font-bold py-10 px-5 text-center">My Skills</h2>
         <div className="skills-container">
           <div className="skills-box">
             <img src="./images/html-5.png" alt="" className="skills-icons" />
@@ -77,8 +77,8 @@ const Portfolio = () => {
       </section>
 
       <section className="my-works pt-20">
-        <h2 className="text-4xl text-center font-bold">My Recent Works</h2>
-        <div className="flex flex-wrap gap-10">
+        <h2 className="md:text-4xl text-3xl font-bold py-10 px-5 text-center">My Recent Works</h2>
+        <div className="flex flex-wrap gap-10 md:px-1 px-4">
           <div className="card w-96 bg-base-100 shadow-lg">
             <div className="card-body items-center text-center">
               <a
