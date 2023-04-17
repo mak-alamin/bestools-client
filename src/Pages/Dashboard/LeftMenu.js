@@ -10,9 +10,7 @@ const LeftMenu = () => {
   const [userRole] = useUserRole(user);
 
   return (
-    <div className="drawer-side">
-      <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
-      <ul className="menu p-4 overflow-y-auto w-48 text-base-content bg-slate-100">
+      <ul className="menu lg:block hidden p-4 overflow-y-auto w-48 bg-slate-200">
         <li>
           <Link to="/dashboard">Dashboard</Link>
         </li>
@@ -43,7 +41,6 @@ const LeftMenu = () => {
           </>
         )}
       </ul>
-    </div>
   );
 };
 

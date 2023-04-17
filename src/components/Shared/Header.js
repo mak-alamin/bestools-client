@@ -5,11 +5,14 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import useUserRole from "../../hooks/useUserRole";
 
 const Header = () => {
   const navigate = useNavigate();
 
   const [user] = useAuthState(auth);
+
+  const [userRole] = useUserRole(user);
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo")) || user;
 
@@ -80,7 +83,7 @@ const Header = () => {
         </div>
 
         <div className="navbar-end">
-          {userInfo && (userInfo?.name || userInfo?.displayName) ? (
+          {userInfo ? (
             <div className="avator dropdown">
               <label tabIndex={0}>
                 <div className="avatar online placeholder">
@@ -91,7 +94,7 @@ const Header = () => {
                     </p>
                   </div>
                 </div>
-                <p>
+                <p className="md:block hidden">
                   {userInfo?.name && userInfo?.name}
                   {userInfo?.displayName && userInfo?.displayName}
                 </p>
@@ -104,10 +107,37 @@ const Header = () => {
                 <li>
                   <Link to="/dashboard">Dashboard</Link>
                 </li>
+
+                <li className="lg:hidden">
+                  <Link to="/dashboard/my-orders">My Orders</Link>
+                </li>
+
+                <li className="lg:hidden">
+                  <Link to="/dashboard/my-profile">My Profile</Link>
+                </li>
+
+                <li className="lg:hidden">
+                  <Link to="/dashboard/my-reviews">Add Review</Link>
+                </li>
+
+                {userRole === "admin" && (
+                  <>
+                    <li className="lg:hidden">
+                      <Link to="/dashboard/products">Manage Products</Link>
+                    </li>
+                    <li className="lg:hidden">
+                      <Link to="/dashboard/manage-orders">Manage Orders</Link>
+                    </li>
+                    <li className="lg:hidden">
+                      <Link to="/dashboard/users">All Users</Link>
+                    </li>
+                  </>
+                )}
+
                 <li>
                   {" "}
                   <button className="btn btn-ghost" onClick={logout}>
-                    Sign Out
+                    Log Out
                   </button>
                 </li>
               </ul>
@@ -117,27 +147,6 @@ const Header = () => {
               Login
             </Link>
           )}
-
-          <label
-            tabIndex="1"
-            htmlFor="dashboard-sidebar"
-            className="btn btn-ghost lg:hidden"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </label>
         </div>
       </div>
     </>

@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Blog = () => {
   return (
     <div className="blog max-w-2xl mx-auto">
-      <h1 className="text-5xl font-bold text-center my-5">Blog</h1>
+      <h1 className="md:text-5xl text-3xl font-bold md:py-14 py-10 px-5 text-center">Blog</h1>
 
       <div tabIndex={0} className="collapse mb-4">
         <input type="checkbox" className="peer" />

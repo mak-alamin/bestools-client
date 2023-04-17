@@ -26,3 +26,9 @@
 .swiper-button-prev:after {
   color: #737373;
 }
+
+@media (max-width:766px) {
+  .heading{
+    font-size: 30px;
+  }
+}

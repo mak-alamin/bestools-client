@@ -29,8 +29,6 @@ const Purchase = () => {
 
   const img_class = isCheckout ? "md:w-32" : "md:w-2/5";
 
-  console.log(product);
-
   if (isLoading) {
     return <Loading></Loading>;
   }

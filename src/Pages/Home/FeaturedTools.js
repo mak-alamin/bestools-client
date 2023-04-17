@@ -10,11 +10,11 @@ const FeaturedTools = () => {
   }
 
   return (
-    <div id="featured_tools" className="container my-10 py-10">
-      <h2 className="text-4xl text-center font-bold mb-5">Featured Tools</h2>
+    <div id="featured_tools" className="container md:my-10 my-5 md:py-10 py-4">
+      <h2 className="md:text-4xl text-2xl text-center font-bold md:mb-5 mb-1">Featured Tools</h2>
 
       {products && products.length ? (
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap md:p-0 p-4">
           {products.slice(-8).map((tool) => {
             return <ToolCard key={tool._id} tool={tool}></ToolCard>;
           })}

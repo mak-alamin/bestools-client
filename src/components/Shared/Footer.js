@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="bg-base-200">
       <div className="footer container p-10 text-base-content">
-        <div>
+        <div className="md:text-left text-center">
           <span className="footer-title">Services</span>
           <a href="#!" className="link link-hover">
             Branding
@@ -19,7 +19,7 @@ const Footer = () => {
             Advertisement
           </a>
         </div>
-        <div>
+        <div className="md:text-left text-center">
           <span className="footer-title">Company</span>
           <a href="#!" className="link link-hover">
             About us
@@ -34,7 +34,7 @@ const Footer = () => {
             Press kit
           </a>
         </div>
-        <div>
+        <div className="md:text-left text-center">
           <span className="footer-title">Legal</span>
           <a href="#!" className="link link-hover">
             Terms of use

@@ -2,7 +2,7 @@
   background: url("images/diy-tools.jpg") no-repeat center center;
   background-size: cover;
 }
-.business-stat{
+.business-stat {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -48,8 +48,8 @@
 }
 .avator.dropdown .dropdown-content {
   top: 100%;
-  left: 0;
-  max-width: 100%;
+  max-width: 180px;
+  right: 0;
 }
 .avator.dropdown .dropdown-content li a {
   text-align: center;
@@ -148,7 +148,7 @@ form .rating {
   align-items: center;
   justify-content: space-between;
 }
-.blog .collapse-title span{
+.blog .collapse-title span {
   font-weight: 500;
 }
 .blog .collapse-title,
@@ -162,4 +162,16 @@ form .rating {
 
 footer .footer-title {
   opacity: 1;
+}
+.footer > div {
+  width: 100%;
+}
+@media (max-width: 767px) {
+  .thankyou-area,
+  .checkout-area form {
+    padding: 20px;
+  }
+  footer .footer > * {
+    place-items: unset;
+  }
 }

@@ -74,7 +74,7 @@ const Checkout = ({
   }
 
   return (
-    <div className="checkout-area md:w-1/2">
+    <div className="checkout-area md:w-1/2 md:mt-0 mt-5">
       <form onSubmit={handleSubmit(handleCheckoutSubmit)}>
         <h1 className="font-bold text-2xl text-center mb-2">Checkout</h1>
         <hr />

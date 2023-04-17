@@ -12,10 +12,10 @@ const Reviews = () => {
 
   return (
     <div className="container my-10 py-10">
-      <h2 className="text-4xl text-center font-bold mb-10">Latest Reviews</h2>
+      <h2 className="md:text-4xl text-2xl text-center font-bold md:mb-5 mb-1">Latest Reviews</h2>
 
       {reviews && reviews.length ? (
-        <div className="flex flex-wrap gap-10">
+        <div className="flex flex-wrap gap-10 md:p-0 p-4">
           {reviews.slice(-6).map((review, index) => {
             return <Review key={review?._id} review={review} index={index}></Review>;
           })}

@@ -2,9 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import auth from "../../../firebase.init";
+import { toast } from "react-toastify";
 import BesToolsAlert from "../../../components/Shared/BesToolsAlert";
 import Loading from "../../../components/Shared/Loading";
+import auth from "../../../firebase.init";
 
 const UpdateProfile = () => {
   const [user, loading] = useAuthState(auth);
@@ -47,12 +48,9 @@ const UpdateProfile = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        if (res.result.acknowledged) {
-          setAlertInfo({
-            show: true,
-            type: "success",
-            message: "User Updated Successfully.",
-          });
+        console.log(res);
+        if (res.acknowledged || res.result.acknowledged) {
+          toast.success("Profile Updated.");
         }
       });
   };

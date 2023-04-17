@@ -11,9 +11,9 @@ import styles from "./SwiperSlider.module.css";
 // import required modules
 import { Navigation } from "swiper";
 
-const SwiperSlider = () => {
+const MobileSlider = () => {
   return (
-    <div className="hidden md:block">
+    <div className="md:hidden">
       <Swiper
         navigation={true}
         modules={[Navigation]}
@@ -22,7 +22,7 @@ const SwiperSlider = () => {
         <SwiperSlide className={styles.slider1}>
           <div
             className={`${styles.swiper_bg}`}
-            style={{ backgroundImage: "url('./images/banner-1.jpg')" }}
+            style={{ backgroundImage: "url('./images/mbanner-1.jpg')" }}
           >
             <div className="container">
               <h1 className={styles.heading}>Innovative Tool Manufacturing</h1>
@@ -60,7 +60,7 @@ const SwiperSlider = () => {
         <SwiperSlide className={styles.slider3}>
           <div
             className={styles.swiper_bg}
-            style={{ backgroundImage: "url('./images/banner-3.jpg')" }}
+            style={{ backgroundImage: "url('./images/mbanner-3.jpg')" }}
           >
             <div className="container">
               <h1 className={styles.heading}> Built to Endure,</h1>
@@ -79,4 +79,4 @@ const SwiperSlider = () => {
     </div>
   );
 };
-export default SwiperSlider;
+export default MobileSlider;

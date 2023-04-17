@@ -4,11 +4,13 @@ import FeaturedTools from "./FeaturedTools";
 import Reviews from "../../components/Reviews/Reviews";
 import Testimonial from "./Testimonial";
 import BusinessStats from "../../components/BusinessStats/BusinessStats";
+import MobileSlider from "../../components/Shared/SwiperSlider/MobileSlider";
 
 const Home = () => {
   return (
     <>
       <SwiperSlider></SwiperSlider>
+      <MobileSlider></MobileSlider>
       <FeaturedTools></FeaturedTools>
       <Testimonial></Testimonial>
       <About></About>
