@@ -1,30 +1,23 @@
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
-import useUserData from "../../hooks/useUserData";
-import Loading from "../Shared/Loading";
-
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = () => {
-  const location = useLocation();
-
-  const [user, loading] = useAuthState(auth);
-
-  const token = location?.state?.token || localStorage.getItem("accessToken");
-
-  const email = user?.email;
-
-  const [userData, isLoading] = useUserData({ email, token });
-
   const navigate = useNavigate();
+
+  const [user] = useAuthState(auth);
+
+  const userInfo = JSON.parse(localStorage.getItem("userInfo")) || user;
 
   const logout = () => {
     signOut(auth);
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("userInfo");
+
     navigate("/login");
   };
 
@@ -48,10 +41,6 @@ const Header = () => {
       </li>
     </>
   );
-
-  if (loading || isLoading) {
-    return <Loading></Loading>;
-  }
 
   return (
     <>
@@ -91,17 +80,21 @@ const Header = () => {
         </div>
 
         <div className="navbar-end">
-          {token && userData?.name ? (
+          {userInfo && (userInfo?.name || userInfo?.displayName) ? (
             <div className="avator dropdown">
               <label tabIndex={0}>
                 <div className="avatar online placeholder">
                   <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
                     <p className="text-xl">
-                      {userData?.name && userData?.name.charAt(0)}
+                      {userInfo?.name && userInfo?.name.charAt(0)}
+                      {userInfo?.displayName && userInfo?.displayName.charAt(0)}
                     </p>
                   </div>
                 </div>
-                <p>{userData?.name && userData?.name}</p>
+                <p>
+                  {userInfo?.name && userInfo?.name}
+                  {userInfo?.displayName && userInfo?.displayName}
+                </p>
                 <FontAwesomeIcon icon={faAngleDown} />
               </label>
               <ul
@@ -120,7 +113,9 @@ const Header = () => {
               </ul>
             </div>
           ) : (
-            <Link to="/login">Login</Link>
+            <Link to="/login" className="btn btn-info btn-sm">
+              Login
+            </Link>
           )}
 
           <label

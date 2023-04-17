@@ -20,7 +20,9 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
-  const [token] = useToken(user || gUser);
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+  const [token] = useToken(user || gUser || userInfo);
 
   let signInError;
   const navigate = useNavigate();
@@ -30,7 +32,10 @@ const Login = () => {
   useEffect(() => {
     if (token) {
       // console.log(token);
-      navigate(from, { replace: true, state: { token: token } });
+      navigate(from, {
+        replace: true,
+        state: { token: token, loggedin: true },
+      });
     }
   }, [token, from, navigate]);
 
@@ -124,10 +129,10 @@ const Login = () => {
               value="Login"
             />
           </form>
-          <p>
+          <p className="mt-4">
             <small>
-              New to Bestools{" "}
-              <Link className="text-primary" to="/register">
+              New to Bestools?{" "}
+              <Link className="btn btn-black btn-xs" to="/register">
                 Register Now
               </Link>
             </small>
@@ -137,6 +142,12 @@ const Login = () => {
             onClick={() => signInWithGoogle()}
             className="btn btn-outline"
           >
+            <img
+              src="/images/google.png"
+              alt="google"
+              width="18"
+              className="mr-2"
+            />
             Login with Google
           </button>
         </div>

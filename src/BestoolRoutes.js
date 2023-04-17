@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import About from "./Pages/About/About";
 import Blog from "./Pages/Blog";
@@ -18,8 +18,11 @@ import Notfound from "./Pages/Notfound";
 import Portfolio from "./Pages/Portfolio/Portfolio";
 import Purchase from "./Pages/Purchase/Purchase";
 import Tools from "./Pages/Tools/Tools";
+// import { bestoolContext } from "./App";
 
-const BestoolRoutes = () => {
+const BestoolRoutes = ({ userInfo ,setUserInfo }) => {
+  // const { userInfo ,setUserInfo } = useContext(bestoolContext);
+
   return (
     <Routes>
       <Route path="/" element={<Home></Home>}></Route>
@@ -38,7 +41,7 @@ const BestoolRoutes = () => {
       <Route
         path="purchase/:id"
         element={
-          <RequireAuth>
+          <RequireAuth userInfo={userInfo} setUserInfo={setUserInfo}>
             <Purchase></Purchase>
           </RequireAuth>
         }
@@ -48,7 +51,7 @@ const BestoolRoutes = () => {
       <Route
         path="dashboard"
         element={
-          <RequireAuth>
+          <RequireAuth userInfo={userInfo} setUserInfo={setUserInfo}>
             <Dashboard></Dashboard>
           </RequireAuth>
         }

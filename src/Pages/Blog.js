@@ -13,13 +13,13 @@ const Blog = () => {
 
       <div tabIndex={0} className="collapse mb-4">
         <input type="checkbox" className="peer" />
-        <div className="collapse-title bg-info peer-checked:bg-info">
+        <div className="collapse-title bg-green-400 peer-checked:bg-green-400">
           <span>
             1. How will you improve the performance of a React Application?
           </span>{" "}
           <FontAwesomeIcon icon={faAngleDown} />
         </div>
-        <div className="collapse-content bg-info text-primary-content peer-checked:bg-info peer-checked:text-primary-content border-t-2">
+        <div className="collapse-content bg-green-400 text-primary-content peer-checked:bg-green-400 peer-checked:text-primary-content border-t-2">
           <p className="pt-3">
             Here are some actions that can be performed to improve the
             performance of a React Application:
@@ -76,7 +76,7 @@ const Blog = () => {
 
       <div tabIndex={1} className="collapse mb-4">
         <input type="checkbox" className="peer" />
-        <div className="collapse-title bg-info peer-checked:bg-info ">
+        <div className="collapse-title bg-green-400 peer-checked:bg-green-400 ">
           <span>
             {" "}
             2. What are the different ways to manage a state in a React
@@ -84,7 +84,7 @@ const Blog = () => {
           </span>{" "}
           <FontAwesomeIcon icon={faAngleDown} />
         </div>
-        <div className="collapse-content bg-info text-primary-content peer-checked:bg-info peer-checked:text-primary-content border-t-2">
+        <div className="collapse-content bg-green-400 text-primary-content peer-checked:bg-green-400 peer-checked:text-primary-content border-t-2">
           <p className="pt-3">
             {" "}
             <FontAwesomeIcon icon={faHandPointRight} className="mr-2" /> Using
@@ -131,11 +131,11 @@ const Blog = () => {
 
       <div tabIndex={2} className="collapse mb-4">
         <input type="checkbox" className="peer" />
-        <div className="collapse-title bg-info peer-checked:bg-info ">
+        <div className="collapse-title bg-green-400 peer-checked:bg-green-400 ">
           <span>3. How does prototypical inheritance work?</span>
           <FontAwesomeIcon icon={faAngleDown} />
         </div>
-        <div className="collapse-content bg-info text-primary-content peer-checked:bg-info peer-checked:text-primary-content border-t-2">
+        <div className="collapse-content bg-green-400 text-primary-content peer-checked:bg-green-400 peer-checked:text-primary-content border-t-2">
           <p className="pt-3">
             Prototypical inheritance is a mechanism for objects to inherit
             properties and methods from their parent objects or prototypes
@@ -159,7 +159,7 @@ const Blog = () => {
 
       <div tabIndex={3} className="collapse mb-4">
         <input type="checkbox" className="peer" />
-        <div className="collapse-title bg-info peer-checked:bg-info ">
+        <div className="collapse-title bg-green-400 peer-checked:bg-green-400 ">
           <span>
             4. Why you do not set the state directly in React. For example, if
             you have const [products, setProducts] = useState([]). Why you do
@@ -167,7 +167,7 @@ const Blog = () => {
           </span>
           <FontAwesomeIcon icon={faAngleDown} />
         </div>
-        <div className="collapse-content bg-info text-primary-content peer-checked:bg-info peer-checked:text-primary-content border-t-2">
+        <div className="collapse-content bg-green-400 text-primary-content peer-checked:bg-green-400 peer-checked:text-primary-content border-t-2">
           <p className="pt-3">
             In React, it is not recommended to set state directly using the
             state variable. You should use the setProducts() function to update
@@ -192,7 +192,7 @@ const Blog = () => {
 
       <div tabIndex={4} className="collapse mb-4">
         <input type="checkbox" className="peer" />
-        <div className="collapse-title bg-info peer-checked:bg-info ">
+        <div className="collapse-title bg-green-400 peer-checked:bg-green-400 ">
           <span>
             5. You have an array of products. Each product has a name, price,
             description, etc. How will you implement a search to find products
@@ -200,7 +200,7 @@ const Blog = () => {
           </span>
           <FontAwesomeIcon icon={faAngleDown} />
         </div>
-        <div className="collapse-content bg-info text-primary-content peer-checked:bg-info peer-checked:text-primary-content border-t-2">
+        <div className="collapse-content bg-green-400 text-primary-content peer-checked:bg-green-400 peer-checked:text-primary-content border-t-2">
           <p className="pt-3">
             <code>
               {`products.filter(product =>
@@ -215,11 +215,11 @@ const Blog = () => {
 
       <div tabIndex={5} className="collapse mb-4">
         <input type="checkbox" className="peer" />
-        <div className="collapse-title bg-info peer-checked:bg-info ">
+        <div className="collapse-title bg-green-400 peer-checked:bg-green-400 ">
           <span>6. What is a unit test? Why should write unit tests?</span>
           <FontAwesomeIcon icon={faAngleDown} />
         </div>
-        <div className="collapse-content bg-info text-primary-content peer-checked:bg-info peer-checked:text-primary-content border-t-2">
+        <div className="collapse-content bg-green-400 text-primary-content peer-checked:bg-green-400 peer-checked:text-primary-content border-t-2">
           <p className="pt-3">
             A unit test is a type of automated test that checks the correctness
             of a small piece of code, such as a function or class. It is written

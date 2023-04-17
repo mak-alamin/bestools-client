@@ -25,7 +25,9 @@ const Register = () => {
 
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
-  const [token] = useToken(user || gUser);
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+  const [token] = useToken(user || gUser || userInfo);
 
   const navigate = useNavigate();
 
@@ -177,10 +179,10 @@ const Register = () => {
               value="Register"
             />
           </form>
-          <p>
+          <p className="mt-4">
             <small>
               Already registered?{" "}
-              <Link className="text-primary" to="/login">
+              <Link className="btn btn-black btn-xs" to="/login">
                 Login
               </Link>
             </small>

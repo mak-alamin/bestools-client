@@ -7,7 +7,7 @@ import Loading from "../../components/Shared/Loading";
 import auth from "../../firebase.init";
 import useUserData from "../../hooks/useUserData";
 
-const RequireAuth = ({ children }) => {
+const RequireAuth = ({ children, userInfo, setUserInfo }) => {
   const [user, loading] = useAuthState(auth);
 
   const location = useLocation();
@@ -23,10 +23,13 @@ const RequireAuth = ({ children }) => {
   }
 
   if (token && userData && !userData?.error) {
+    localStorage.setItem("userInfo", JSON.stringify(userData));
+
     return children;
   } else {
     signOut(auth);
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("userInfo");
 
     toast.error("You have to login to get access.");
 
