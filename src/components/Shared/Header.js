@@ -14,7 +14,7 @@ const Header = () => {
 
   const [userRole] = useUserRole(user);
 
-  const userInfo = JSON.parse(localStorage.getItem("userInfo")) || user;
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   const logout = () => {
     signOut(auth);
@@ -143,6 +143,10 @@ const Header = () => {
               </ul>
             </div>
           ) : (
+            ""
+          )}
+
+          {!user && !userInfo && (
             <Link to="/login" className="btn btn-info btn-sm">
               Login
             </Link>

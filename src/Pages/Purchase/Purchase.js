@@ -13,18 +13,42 @@ const Purchase = () => {
 
   const [product, isLoading, refetch] = useProduct(id);
 
+  let min_order_qty = product?.min_order_qty || 1;
+  let stock_qty = product?.stock_qty;
+
+  const [quantityError, setQuantityError] = useState("");
+
   const [isCheckout, setIsCheckout] = useState(0);
 
   const [thankYou, setThankYou] = useState(0);
   const [thankYouContent, setThankYouContent] = useState("");
 
   useEffect(() => {
-    setQuantity(product?.min_order_qty);
-  }, [product]);
+    setQuantity(min_order_qty);
+  }, [min_order_qty]);
+
+  const handleQuantity = (e) => {
+    let targetValue = parseInt(e.target.value);
+    let stockQty = parseInt(stock_qty);
+
+    if (targetValue < parseInt(min_order_qty)) {
+      setQuantityError(`Quantity should be minimum ${min_order_qty}`);
+    } else if (stockQty && targetValue > stockQty) {
+      setQuantityError(`Quantity should be maximum ${stock_qty}`);
+    } else if (isNaN(targetValue) || !targetValue) {
+      setQuantityError(`Quantity is not valid!`);
+    } else {
+      setQuantityError("");
+      setQuantity(e.target.value);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsCheckout(1);
+
+    if (!quantityError) {
+      setIsCheckout(1);
+    }
   };
 
   const img_class = isCheckout ? "md:w-32" : "md:w-2/5";
@@ -59,16 +83,18 @@ const Purchase = () => {
         <input
           type="number"
           id="quantity"
-          defaultValue={product?.min_order_qty}
-          min={product?.min_order_qty}
+          defaultValue={min_order_qty}
+          min={min_order_qty}
           max={product?.stock_qty}
-          onChange={(e) => setQuantity(e.target.value)}
+          onChange={handleQuantity}
           className="input input-bordered max-w-xs"
         />
 
+        {quantityError && <p className="text-error">{quantityError}</p>}
+
         <br />
 
-        {!isCheckout ? (
+        {!isCheckout && !quantityError ? (
           <button onClick={handleSubmit} className="btn btn-info mt-4">
             Proceed To Checkout
           </button>

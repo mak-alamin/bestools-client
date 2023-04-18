@@ -70,6 +70,7 @@ const Register = () => {
           console.log(resData);
           if (resData?.acknowledged) {
             toast.success("Registration Successfull.");
+            navigate("/login");
           }
         });
     }
@@ -82,8 +83,6 @@ const Register = () => {
     );
 
     createUserToDB(data);
-
-    await updateProfile({ displayName: data.name });
   };
 
   return (
