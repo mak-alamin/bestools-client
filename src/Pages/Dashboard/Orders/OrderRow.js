@@ -14,7 +14,7 @@ const OrderRow = ({ order, refetch, setDeletingOrder }) => {
     shipped,
   } = order;
 
-  refetch();
+  refetch()
 
   const handleShipping = async (orderId) => {
     let shippingData = {

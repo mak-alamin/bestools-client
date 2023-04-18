@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 
-const useOrders = () => {
-  let url = "https://bestools-server.onrender.com/orders";
+const useOdersByEmail = (email) => {
+  let url = `https://bestools-server.onrender.com/orders/${email}`;
 
   const {
-    data: orders,
+    data: myOrders,
     isLoading,
     refetch,
   } = useQuery({
@@ -28,7 +28,8 @@ const useOrders = () => {
     refetchOnWindowFocus: false,
     staleTime: 10000,
   });
-  return [orders, isLoading, refetch];
+
+  return [myOrders, isLoading, refetch];
 };
 
-export default useOrders;
+export default useOdersByEmail;

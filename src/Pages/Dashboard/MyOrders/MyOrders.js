@@ -5,13 +5,13 @@ import { toast } from "react-toastify";
 import ConfirmModal from "../../../components/Shared/ConfirmModal";
 import Loading from "../../../components/Shared/Loading";
 import auth from "../../../firebase.init";
-import useOrders from "../../../hooks/useOrders";
+import useOdersByEmail from "../../../hooks/useOdersByEmail";
 import MyOrderRow from "./MyOrderRow";
 
 const MyOrders = () => {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
-  const [orders, isLoading, refetch] = useOrders(user?.email);
+  const [myOrders, isLoading, refetch] = useOdersByEmail(user?.email);
 
   const [deletingOrder, setDeletingOrder] = useState(false);
 
@@ -39,14 +39,15 @@ const MyOrders = () => {
     setDeletingOrder(null);
   };
 
-  if (isLoading) {
+  if (isLoading || loading) {
     return <Loading></Loading>;
   }
 
-  if (!orders?.length) {
+  if (!myOrders?.length) {
     return (
       <div className="container pt-1">
         <h2 className="text-2xl font-bold text-purple-500 mb-3">My Orders</h2>
+
         <p>You don't have placed any order yet.</p>
         <Link to="/tools" className="btn btn-info mt-5 text-white">
           Start Shopping
@@ -54,6 +55,7 @@ const MyOrders = () => {
       </div>
     );
   }
+
   return (
     <div className="container pt-1">
       <div className="drawer drawer-mobile">
@@ -77,8 +79,8 @@ const MyOrders = () => {
               </tr>
             </thead>
             <tbody>
-              {orders?.length &&
-                orders.map((order) => (
+              {myOrders?.length &&
+                myOrders.map((order) => (
                   <MyOrderRow
                     key={order._id}
                     order={order}

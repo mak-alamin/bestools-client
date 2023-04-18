@@ -12,7 +12,7 @@ const Orders = () => {
   const [user] = useAuthState(auth);
   const [userRole] = useUserRole(user);
 
-  const [orders, isLoading, refetch] = useOrders();
+  const [orders, isLoading, refetch] = useOrders(null);
 
   const [deletingOrder, setDeletingOrder] = useState(null);
 
