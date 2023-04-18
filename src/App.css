@@ -83,7 +83,10 @@
   z-index: 99;
   display: none;
 }
-
+.card img {
+  height: 150px;
+  object-fit: cover;
+}
 /* Checkout */
 .checkout-area .form-control {
   margin-bottom: 10px;
@@ -171,7 +174,7 @@ footer .footer-title {
   .checkout-area form {
     padding: 20px;
   }
-  .skills-container{
+  .skills-container {
     grid-template-columns: 1fr 1fr;
   }
   footer .footer > * {

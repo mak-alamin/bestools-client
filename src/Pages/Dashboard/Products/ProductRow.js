@@ -1,5 +1,6 @@
 import React from 'react';
 import UpdateProduct from './UpdateProduct';
+import { truncateText } from '../../../functions/common';
 
 const ProductRow = ({product, refetch, setDeletingProduct, openDrawer}) => {
     const {title,img_url,price, description,stock_qty,min_order_qty, } = product;
@@ -9,8 +10,8 @@ const ProductRow = ({product, refetch, setDeletingProduct, openDrawer}) => {
     return (
         <tr>
             <td><img src={img_url} alt={title} width="60" /></td>
-            <td>{title}</td>
-            <td>{description}</td>
+            <td>{truncateText(title, 16)}</td>
+            <td>{truncateText(description, 24)}</td>
             <td>{price}</td>
             <td>{stock_qty}</td>
             <td>{min_order_qty}</td>

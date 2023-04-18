@@ -5,7 +5,7 @@ import LeftMenu from "./LeftMenu";
 const Dashboard = () => {
   const location = useLocation();
   return (
-    <div className="container pt-10">
+    <div className="pt-10 px-8">
       <div className="drawer drawer-mobile">
         <input
           id="dashboard-sidebar"

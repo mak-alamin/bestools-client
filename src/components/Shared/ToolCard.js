@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { truncateText } from "../../functions/common";
+
 const ToolCard = ({ tool }) => {
   // console.log(tool);
   return (
@@ -11,9 +13,9 @@ const ToolCard = ({ tool }) => {
         )}
 
         <div className="card-body">
-          <h2 className="card-title">{tool?.title}</h2>
+          <h2 className="card-title">{truncateText(tool?.title, 20)}</h2>
           <p className="text-info font-medium text-lg">${tool?.price}</p>
-          <p>{tool?.description}</p>
+          <p>{truncateText(tool?.description, 28)}</p>
           <div className="card-actions justify-end">
             <Link
               to={`/purchase/${tool?._id}`}
