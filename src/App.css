@@ -83,7 +83,7 @@
   z-index: 99;
   display: none;
 }
-.card img {
+.tool.card img {
   height: 150px;
   object-fit: cover;
 }
