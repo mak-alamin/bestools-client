@@ -8,7 +8,7 @@ const useOrder = (id) => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["orders"],
+    queryKey: ["order-by-id"],
     queryFn: async () => {
       try {
         const res = await fetch(url, {

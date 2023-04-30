@@ -8,7 +8,7 @@ const useOdersByEmail = (email) => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["orders"],
+    queryKey: ["user-orders"],
     queryFn: async () => {
       try {
         const res = await fetch(url, {
