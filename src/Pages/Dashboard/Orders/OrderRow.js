@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { toast } from "react-toastify";
 
 const OrderRow = ({ order, refetch, setDeletingOrder }) => {
   const {
@@ -14,7 +15,7 @@ const OrderRow = ({ order, refetch, setDeletingOrder }) => {
     shipped,
   } = order;
 
-  refetch()
+  refetch();
 
   const handleShipping = async (orderId) => {
     let shippingData = {
@@ -32,7 +33,10 @@ const OrderRow = ({ order, refetch, setDeletingOrder }) => {
       }
     );
 
-    refetch();
+    if (res.data.acknowledged || res.acknowledged) {
+      toast.success("Status updated.");
+      refetch();
+    }
   };
 
   return (
